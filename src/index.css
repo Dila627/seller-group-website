@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color: #2b2520;
+    background: #f7f0e6;
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-width: 320px;
+    margin: 0;
+    overflow-x: hidden;
+    background: #f8fafc;
+  }
+
+  ::selection {
+    background: rgba(198, 169, 109, 0.34);
+  }
+}
+
+@layer components {
+  .container-soft {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .section-padding {
+    @apply py-20 sm:py-24 lg:py-32;
+  }
+
+  .eyebrow {
+    @apply text-xs font-extrabold uppercase tracking-normal text-coral;
+  }
+
+  .display-title {
+    @apply font-display text-4xl font-semibold leading-[0.98] tracking-normal text-graphite sm:text-5xl lg:text-7xl;
+  }
+
+  .body-lead {
+    @apply text-base leading-8 text-cocoa/75 sm:text-lg;
+  }
+
+  .premium-card {
+    @apply border border-graphite/10 bg-ivory/78 shadow-soft backdrop-blur-xl;
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-500/25;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .will-transform {
+    will-change: transform, opacity;
+  }
+
+  .motion-safe-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .motion-safe-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+
+    .motion-safe-reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

@@ -14,13 +14,10 @@ export const contacts = {
   phoneHref: "tel:+994518885010",
   whatsappHref: "https://wa.me/994518885010",
   telegramHref: "tg://resolve?phone=994518885010",
-  maxHref: "https://max.ru/",
   email: "sellergroupaz@gmail.com",
   emailHref: "mailto:sellergroupaz@gmail.com",
   address: "Dərnəgül, Baksol yolu",
   mapHref: "https://www.google.com/maps/search/?api=1&query=D%C9%99rn%C9%99g%C3%BCl%2C%20Baksol%20yolu%2C%20Baku",
-  mapEmbed:
-    "https://www.google.com/maps?q=D%C9%99rn%C9%99g%C3%BCl%2C%20Baksol%20yolu%2C%20Baku&output=embed",
 };
 
 export const assets = {
@@ -55,16 +52,12 @@ export const siteCopy = {
     common: {
       home: "Главная",
       contactUs: "Связаться",
-      browseProducts: "Посмотреть продукцию",
       viewBrand: "Перейти к товарам",
-      viewProduct: "Подробнее",
       productCatalog: "Каталог продукции",
       noProducts:
         "Ассортимент этого производителя уточняется. Свяжитесь с нами для подбора материалов под ваш объект.",
       backToBrands: "К брендам",
       backToHome: "На главную",
-      availableByRequest: "Информация по запросу",
-      productSource: "Информация структурирована по данным производителя",
     },
     hero: {
       eyebrow: "Импорт из России и Турции",
@@ -74,11 +67,6 @@ export const siteCopy = {
         "Премиальный шоурум Seller Group Azerbaijan с витриной строительных и отделочных материалов",
       showcaseLabel: "Витрина реальных товаров Seller Group Azerbaijan",
       showcaseTitle: "Витрина материалов",
-      stats: [
-        { value: "2", label: "страны поставки" },
-        { value: "6", label: "брендов в работе" },
-        { value: "B2B/B2C", label: "клиенты" },
-      ],
     },
     about: {
       eyebrow: "О компании",
@@ -294,16 +282,12 @@ export const siteCopy = {
     common: {
       home: "Əsas səhifə",
       contactUs: "Əlaqə saxla",
-      browseProducts: "Məhsullara bax",
       viewBrand: "Məhsullara bax",
-      viewProduct: "Ətraflı",
       productCatalog: "Məhsul kataloqu",
       noProducts:
         "Bu istehsalçının assortimenti dəqiqləşdirilir. Obyektiniz üçün material seçimi barədə bizimlə əlaqə saxlayın.",
       backToBrands: "Brendlərə qayıt",
       backToHome: "Əsas səhifəyə qayıt",
-      availableByRequest: "Məlumat sorğu əsasında",
-      productSource: "Məlumat istehsalçı datası əsasında strukturlaşdırılıb",
     },
     hero: {
       eyebrow: "Rusiya və Türkiyədən idxal",
@@ -313,11 +297,6 @@ export const siteCopy = {
         "Seller Group Azerbaijan tikinti və tamamlama materialları vitrini olan premium şourum",
       showcaseLabel: "Seller Group Azerbaijan real məhsul vitrini",
       showcaseTitle: "Material vitrini",
-      stats: [
-        { value: "2", label: "tədarük ölkəsi" },
-        { value: "6", label: "aktiv brend" },
-        { value: "B2B/B2C", label: "müştərilər" },
-      ],
     },
     about: {
       eyebrow: "Şirkət haqqında",

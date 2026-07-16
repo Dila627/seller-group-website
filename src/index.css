@@ -485,10 +485,6 @@
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
   .reveal {
     min-width: 0;
     opacity: 0;

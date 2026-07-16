@@ -7,8 +7,6 @@ export const brandDisplayNames = {
   silex: "SILEX",
   q8: "Q8",
   ultralines: "Ultralines",
-  erica: "ERICA",
-  maler: "Maler",
 };
 
 export const brands = [
@@ -212,58 +210,6 @@ export const brands = [
       "Əsas təmir işləri üçün materiallar",
       "İnteryer və fasad işləri üçün həllər",
       "Seçimdən əvvəl məsləhət",
-    ],
-  },
-  {
-    id: "erica",
-    displayName: brandDisplayNames.erica,
-    name: brandDisplayNames.erica,
-    country_ru: "Россия",
-    country_az: "Rusiya",
-    category_ru: "Специальные эмали",
-    category_az: "Xüsusi emallar",
-    logo: "",
-    accent: "#c98a4a",
-    showInBrandSection: false,
-    description_ru:
-      "Специализированные лакокрасочные материалы ERICA для ремонтных задач.",
-    description_az:
-      "Təmir işləri üçün ERICA xüsusi boya materialları.",
-    advantages_ru: [
-      "Специальные решения для ремонта",
-      "Подбор по назначению",
-      "Поставка через общий каталог Seller Group Azerbaijan",
-    ],
-    advantages_az: [
-      "Təmir üçün xüsusi həllər",
-      "Təyinata görə seçim",
-      "Seller Group Azerbaijan kataloqu üzərindən təchizat",
-    ],
-  },
-  {
-    id: "maler",
-    displayName: brandDisplayNames.maler,
-    name: brandDisplayNames.maler,
-    country_ru: "Россия",
-    country_az: "Rusiya",
-    category_ru: "Материалы для дерева",
-    category_az: "Taxta materialları",
-    logo: "",
-    accent: "#9e5f2e",
-    showInBrandSection: false,
-    description_ru:
-      "Материалы Maler для защиты и декоративной обработки деревянных поверхностей.",
-    description_az:
-      "Taxta səthlərin qorunması və dekorativ emalı üçün Maler materialları.",
-    advantages_ru: [
-      "Решения для деревянных поверхностей",
-      "Декоративная и защитная обработка",
-      "Подбор под назначение объекта",
-    ],
-    advantages_az: [
-      "Taxta səthlər üçün həllər",
-      "Dekorativ və qoruyucu emal",
-      "Obyekt təyinatına uyğun seçim",
     ],
   },
 ];

@@ -42,11 +42,11 @@ function Header({ copy, language, onLanguageChange }) {
               className="h-full w-full object-contain"
             />
           </span>
-          <span className="min-w-0 max-w-[152px] sm:max-w-none">
+          <span className="min-w-0 max-w-[190px] sm:max-w-none">
             <span className="block text-sm font-black leading-[1.08] text-graphite sm:text-base sm:leading-tight">
               Seller Group Azerbaijan
             </span>
-            <span className="block max-h-[22px] overflow-hidden text-[9.5px] font-semibold leading-[11px] text-slate-500 sm:max-h-none sm:text-xs sm:leading-4">
+            <span className="block max-h-[24px] overflow-hidden text-[9px] font-semibold leading-[11px] text-slate-500 sm:max-h-none sm:text-xs sm:leading-4">
               {copy.header.subtitle}
             </span>
           </span>

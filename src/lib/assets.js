@@ -1,3 +1,11 @@
 export function assetPath(path) {
-  return `${import.meta.env.BASE_URL}${path}`.replace(/\/{2,}/g, "/");
+  if (!path) {
+    return "";
+  }
+
+  if (/^(https?:|data:|mailto:|tel:|#)/.test(path)) {
+    return path;
+  }
+
+  return path.startsWith("/") ? path : `/${path}`;
 }

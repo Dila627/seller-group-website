@@ -1160,7 +1160,7 @@ export const products = [
   createProduct({
     id: "erica-radiator-acrylic-enamel",
     slug: "erica-radiator-acrylic-enamel",
-    brandId: "erica",
+    brandId: "prestige",
     category: "enamels",
     type: "radiator-enamel",
     name_ru: "ERICA Полуглянцевая акриловая эмаль для радиаторов",
@@ -1175,7 +1175,7 @@ export const products = [
   createProduct({
     id: "maler-wood-protective-lacquer",
     slug: "maler-wood-protective-lacquer",
-    brandId: "maler",
+    brandId: "radugameller",
     category: "wood-materials",
     type: "wood-varnish",
     name_ru: "Maler Wood Protective Lacquer — цветной лак для дерева",

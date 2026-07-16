@@ -50,8 +50,8 @@ const heroShowcases = [
   },
   {
     id: "radugameller",
-    brand_ru: "Ultralines",
-    brand_az: "Ultralines",
+    brand_ru: "Радуга Маляр",
+    brand_az: "Радуга Маляр",
     image: "assets/hero-showcases/hero_radugamalar_showcase.webp",
   },
 ];
@@ -92,6 +92,7 @@ function Hero({ copy, language }) {
       />
       <div className="hero-premium__shade absolute inset-0 -z-20" />
       <div className="hero-premium__light absolute inset-0 -z-10" aria-hidden="true" />
+      <div className="hero-premium__grid absolute inset-0 -z-10" aria-hidden="true" />
       <div className="hero-premium__dust absolute inset-0 -z-10" aria-hidden="true">
         {Array.from({ length: 9 }).map((_, index) => (
           <span key={index} />
@@ -122,14 +123,14 @@ function Hero({ copy, language }) {
           <div className="hero-reveal hero-reveal--actions mt-8 flex flex-col gap-3 sm:flex-row">
             <AppLink
               href="/#contacts"
-              className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-copper px-6 text-sm font-extrabold text-graphite transition hover:bg-copper-light"
+              className="focus-ring hero-action hero-action--primary inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-copper px-6 text-sm font-extrabold text-graphite transition hover:bg-copper-light"
             >
               {copy.common.contactUs}
-              <ArrowRight size={18} />
+              <ArrowRight className="hero-action__arrow" size={18} />
             </AppLink>
             <AppLink
               href="/catalog"
-              className="focus-ring inline-flex min-h-12 items-center justify-center rounded-full border border-white/25 bg-white/10 px-6 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white/[0.15]"
+              className="focus-ring hero-action hero-action--secondary inline-flex min-h-12 items-center justify-center rounded-full border border-white/25 bg-white/10 px-6 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white/[0.15]"
             >
               {copy.common.productCatalog}
             </AppLink>
@@ -148,7 +149,7 @@ function Hero({ copy, language }) {
             {heroShowcases.map((showcase, index) => (
               <figure
                 key={showcase.id}
-                className="hero-showcase-card"
+                className="hero-showcase-card premium-tilt-card"
                 style={{ "--showcase-index": index }}
               >
                 <figcaption>{showcase[`brand_${language}`] ?? showcase.brand_ru}</figcaption>

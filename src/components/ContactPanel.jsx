@@ -1,150 +1,232 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Clock3, Mail, MapPin, Phone, Send } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
+import Reveal from "./Reveal.jsx";
 import { assets, contacts } from "../data/catalog.js";
 import { assetPath } from "../lib/assets.js";
 import { AppLink } from "../lib/navigation.jsx";
-import { ContactActionButton, ContactActions, getContactActions } from "./ContactActions.jsx";
 
-function ContactDetail({ icon: Icon, label, children }) {
+const paintPath =
+  "M -40 104 C 130 158 230 72 390 102 C 540 136 628 145 755 92 C 895 34 1015 132 1155 98 C 1310 60 1408 146 1640 70";
+
+function FooterIcon({ icon: Icon }) {
   return (
-    <div className="min-w-0 rounded-2xl border border-white/[0.1] bg-white/[0.055] p-3.5">
-      <div className="flex items-center gap-2 text-copper-light">
-        <Icon size={15} />
-        <p className="text-[0.68rem] font-extrabold uppercase leading-none">{label}</p>
-      </div>
-      <div className="mt-2 min-w-0 text-sm font-black leading-6 text-white">{children}</div>
-    </div>
+    <span className="footer-icon">
+      <Icon size={18} />
+    </span>
   );
 }
 
-function BottomBar({ copy, socialActions }) {
+function ContactItem({ icon, label, children, href, external = false }) {
+  const content = (
+    <>
+      <FooterIcon icon={icon} />
+      <span className="min-w-0">
+        <span className="footer-item-label">{label}</span>
+        <span className="footer-item-value">{children}</span>
+      </span>
+    </>
+  );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target={external ? "_blank" : undefined}
+        rel={external ? "noreferrer" : undefined}
+        className="focus-ring footer-info-link"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return <div className="footer-info-link">{content}</div>;
+}
+
+function PaintFlow() {
   return (
-    <div className="mt-7 border-t border-white/10 pt-5">
-      <div className="grid gap-5 text-center md:grid-cols-[1fr_auto_1fr] md:items-center md:text-left">
-        <div className="flex flex-col items-center gap-2 md:items-start">
-          <div className="flex items-center gap-3">
-            <span className="grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-xl border border-white/10 bg-white">
-              <img
-                src={assetPath(assets.logo)}
-                alt="Seller Group Azerbaijan logo"
-                width="36"
-                height="36"
-                loading="lazy"
-                decoding="async"
-                className="h-full w-full object-contain"
-              />
-            </span>
-            <span className="text-sm font-black text-white">Seller Group Azerbaijan</span>
-          </div>
-          <div className="text-xs leading-5 text-slate-400">
-            <p className="font-bold text-slate-300">© 2026 Seller Group Azerbaijan</p>
-            <p>{copy.footer.rights}</p>
-          </div>
-        </div>
-
-        <nav
-          className="flex flex-col items-center gap-2 md:flex-row md:gap-4"
-          aria-label={copy.footer.navigationTitle}
+    <div className="footer-paint-flow" aria-hidden="true">
+      <div className="footer-paint-flow__track">
+        <svg
+          className="footer-paint-flow__svg"
+          viewBox="0 0 1600 180"
+          preserveAspectRatio="none"
         >
-          {copy.footer.nav.map((item) => (
-            <AppLink
-              key={item.href}
-              href={item.href}
-              className="text-xs font-bold text-slate-300 transition hover:text-copper-light"
-            >
-              {item.label}
-            </AppLink>
-          ))}
-        </nav>
+          <defs>
+            <linearGradient id="paintRibbonGradient" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#A93428" />
+              <stop offset="24%" stopColor="#C99552" />
+              <stop offset="48%" stopColor="#D7B24A" />
+              <stop offset="68%" stopColor="#2E6CA8" />
+              <stop offset="100%" stopColor="#4E9B42" />
+            </linearGradient>
+            <linearGradient id="paintRibbonHighlight" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="rgba(255,255,255,0)" />
+              <stop offset="18%" stopColor="rgba(255,255,255,0.58)" />
+              <stop offset="52%" stopColor="rgba(255,255,255,0.22)" />
+              <stop offset="82%" stopColor="rgba(255,255,255,0.46)" />
+              <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+            </linearGradient>
+            <filter id="paintRibbonGlow" x="-8%" y="-80%" width="116%" height="260%">
+              <feGaussianBlur stdDeviation="4" result="blur" />
+              <feColorMatrix
+                in="blur"
+                type="matrix"
+                values="1 0 0 0 0.78  0 1 0 0 0.48  0 0 1 0 0.22  0 0 0 0.34 0"
+                result="glow"
+              />
+              <feMerge>
+                <feMergeNode in="glow" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
 
-        <div className="flex justify-center md:justify-end" aria-label={copy.footer.socialTitle}>
-          <div className="flex gap-2 rounded-full border border-white/10 bg-white/[0.05] p-1.5 backdrop-blur">
-            {socialActions.map((action) => (
-              <ContactActionButton key={action.id} action={action} iconOnly />
-            ))}
-          </div>
-        </div>
+          <path className="footer-paint-flow__shadow" d={paintPath} />
+          <path id="footerPaintPath" className="footer-paint-flow__path" d={paintPath} />
+          <path className="footer-paint-flow__highlight" d={paintPath} />
+        </svg>
+
+        <span className="paint-drop paint-drop--red" />
+        <span className="paint-drop paint-drop--yellow" />
+        <span className="paint-drop paint-drop--blue" />
+        <span className="paint-drop paint-drop--green" />
       </div>
     </div>
   );
 }
 
 function ContactPanel({ copy }) {
+  const footer = copy.footer;
   const contact = copy.contact;
-  const socialActions = getContactActions(contact.actions, {
-    includeMax: false,
-    ids: ["whatsapp", "telegram", "email"],
-  });
+
+  const socialLinks = [
+    {
+      id: "whatsapp",
+      href: contacts.whatsappHref,
+      label: contact.labels.whatsapp,
+      description: footer.socialDescriptions.whatsapp,
+      icon: FaWhatsapp,
+      external: true,
+    },
+    {
+      id: "telegram",
+      href: contacts.telegramHref,
+      label: contact.labels.telegram,
+      description: footer.socialDescriptions.telegram,
+      icon: Send,
+      external: false,
+    },
+    {
+      id: "email",
+      href: contacts.emailHref,
+      label: contact.labels.email,
+      description: footer.socialDescriptions.email,
+      icon: Mail,
+      external: false,
+    },
+  ];
 
   return (
-    <section id="contacts" className="scroll-mt-28 bg-graphite text-white">
-      <div className="container-shell py-9 sm:py-11 lg:py-12">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(360px,0.9fr)] lg:items-stretch">
-          <div className="order-2 flex min-w-0 flex-col lg:order-1">
-            {contact.eyebrow ? (
-              <p className="section-eyebrow text-copper-light">{contact.eyebrow}</p>
-            ) : null}
-            <h2 className="mt-3 text-2xl font-black leading-tight text-white sm:text-4xl lg:text-5xl">
-              {contact.title}
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-200 sm:text-base sm:leading-7">
-              {contact.intro}
-            </p>
-
-            <div className="mt-5 rounded-2xl border border-white/[0.12] bg-white/[0.06] p-3.5 shadow-premium sm:p-4">
-              <div className="grid gap-3 sm:grid-cols-3">
-                <ContactDetail icon={Phone} label={contact.labels.phone}>
-                  <a
-                    href={contacts.phoneHref}
-                    className="focus-ring inline-block whitespace-nowrap transition hover:text-copper-light"
-                  >
-                    {contacts.phoneDisplay}
-                  </a>
-                </ContactDetail>
-
-                <ContactDetail icon={Mail} label={contact.labels.email}>
-                  <a
-                    href={contacts.emailHref}
-                    className="focus-ring inline-block max-w-full break-words transition hover:text-copper-light"
-                  >
-                    {contacts.email}
-                  </a>
-                </ContactDetail>
-
-                <ContactDetail icon={MapPin} label={contact.labels.address}>
-                  <a
-                    href={contacts.mapHref}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="focus-ring inline-block max-w-full break-words transition hover:text-copper-light"
-                  >
-                    {contacts.address}
-                  </a>
-                </ContactDetail>
-              </div>
-
-              <div className="mt-4 border-t border-white/10 pt-4">
-                <p className="mb-3 text-[0.68rem] font-extrabold uppercase text-copper-light">
-                  {contact.actionTitle}
-                </p>
-                <ContactActions labels={contact.actions} variant="dark" />
-              </div>
+    <footer id="contacts" className="site-footer scroll-mt-28">
+      <div className="footer-shell">
+        <div className="footer-grid">
+          <Reveal as="section" className="footer-column footer-column--1">
+            <h2 className="footer-column-title">{footer.contactTitle}</h2>
+            <div className="footer-info-list">
+              <ContactItem icon={Phone} label={contact.labels.phone} href={contacts.phoneHref}>
+                {contacts.phoneDisplay}
+              </ContactItem>
+              <ContactItem icon={Mail} label={contact.labels.email} href={contacts.emailHref}>
+                {contacts.email}
+              </ContactItem>
+              <ContactItem
+                icon={MapPin}
+                label={contact.labels.address}
+                href={contacts.mapHref}
+                external
+              >
+                {contacts.address}
+              </ContactItem>
+              <ContactItem icon={Clock3} label={footer.workTitle}>
+                {footer.workDays}
+                <span className="footer-work-hours">{footer.workHours}</span>
+              </ContactItem>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="order-1 h-[230px] overflow-hidden rounded-2xl border border-white/[0.12] bg-slate-100 shadow-premium sm:h-[280px] lg:order-2 lg:h-auto lg:min-h-[365px]">
-            <iframe
-              title={contact.labels.address}
-              src={contacts.mapEmbed}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="h-full w-full border-0"
-            />
-          </div>
+          <Reveal as="section" className="footer-column footer-column--2">
+            <nav aria-label={footer.navigationTitle}>
+              <h2 className="footer-column-title">{footer.navigationTitle}</h2>
+              <ul className="footer-nav-list">
+                {footer.nav.map((item) => (
+                  <li key={item.href}>
+                    <AppLink href={item.href} className="focus-ring footer-nav-link">
+                      <span>{item.label}</span>
+                    </AppLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </Reveal>
+
+          <Reveal as="section" className="footer-column footer-column--3">
+            <h2 className="footer-column-title">{footer.socialTitle}</h2>
+            <div className="footer-social-list" aria-label={footer.socialTitle}>
+              {socialLinks.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <a
+                    key={item.id}
+                    href={item.href}
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noreferrer" : undefined}
+                    aria-label={`${item.label}: ${item.description}`}
+                    className={`focus-ring footer-social-card footer-social-card--${item.id}`}
+                  >
+                    <span className="footer-social-icon">
+                      <Icon size={19} />
+                    </span>
+                    <span>
+                      <span className="footer-social-name">{item.label}</span>
+                      <span className="footer-social-description">{item.description}</span>
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+          </Reveal>
+
+          <Reveal as="section" className="footer-column footer-column--4">
+            <div className="footer-brand">
+              <span className="footer-brand-logo">
+                <img
+                  src={assetPath(assets.logo)}
+                  alt="Seller Group Azerbaijan logo"
+                  width="96"
+                  height="96"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </span>
+              <div>
+                <p className="footer-brand-name">Seller Group</p>
+                <p className="footer-brand-country">Azerbaijan</p>
+              </div>
+              <p className="footer-brand-tagline">{footer.brandTagline}</p>
+            </div>
+          </Reveal>
         </div>
 
-        <BottomBar copy={copy} socialActions={socialActions} />
+        <PaintFlow />
+
+        <div className="footer-bottom">
+          <p>© 2026 Seller Group Azerbaijan</p>
+          <p>{footer.bottomRight ?? footer.rights}</p>
+        </div>
       </div>
-    </section>
+    </footer>
   );
 }
 

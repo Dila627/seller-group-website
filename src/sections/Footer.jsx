@@ -1,6 +1,6 @@
 import { Clock3, Mail, MapPin, Phone, Send } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import Reveal from "./Reveal.jsx";
+import Reveal from "../components/Reveal.jsx";
 import { assets, contacts } from "../data/catalog.js";
 import { assetPath } from "../lib/assets.js";
 import { AppLink } from "../lib/navigation.jsx";
@@ -96,7 +96,7 @@ function PaintFlow() {
   );
 }
 
-function ContactPanel({ copy }) {
+function Footer({ copy }) {
   const footer = copy.footer;
   const contact = copy.contact;
 
@@ -230,4 +230,4 @@ function ContactPanel({ copy }) {
   );
 }
 
-export default ContactPanel;
+export default Footer;

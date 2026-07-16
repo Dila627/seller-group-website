@@ -1,11 +1,11 @@
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import BrandCard from "../components/BrandCard.jsx";
-import ContactPanel from "../components/ContactPanel.jsx";
 import ProductCard from "../components/ProductCard.jsx";
 import Reveal from "../components/Reveal.jsx";
 import { brands, getLocalizedBrand, getProductsByBrandId } from "../data/catalog.js";
 import { assetPath } from "../lib/assets.js";
 import { AppLink } from "../lib/navigation.jsx";
+import Footer from "../sections/Footer.jsx";
 
 function BrandPage({ brand, copy, language }) {
   const brandProducts = getProductsByBrandId(brand.id);
@@ -111,7 +111,7 @@ function BrandPage({ brand, copy, language }) {
         </div>
       </section>
 
-      <ContactPanel copy={copy} />
+      <Footer copy={copy} />
     </>
   );
 }

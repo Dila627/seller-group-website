@@ -1,7 +1,6 @@
 import { ChevronDown, Search, SlidersHorizontal, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import CatalogProductCard from "../components/CatalogProductCard.jsx";
-import ContactPanel from "../components/ContactPanel.jsx";
 import Reveal from "../components/Reveal.jsx";
 import {
   catalogOptions,
@@ -10,6 +9,7 @@ import {
   getLocalizedProduct,
   products,
 } from "../data/catalog.js";
+import Footer from "../sections/Footer.jsx";
 
 const emptyFilters = {
   query: "",
@@ -594,7 +594,7 @@ function CatalogPage({ copy, language }) {
         </div>
       ) : null}
 
-      <ContactPanel copy={copy} />
+      <Footer copy={copy} />
     </>
   );
 }

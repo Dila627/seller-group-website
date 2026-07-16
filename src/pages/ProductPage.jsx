@@ -7,11 +7,11 @@ import {
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { useState } from "react";
-import ContactPanel from "../components/ContactPanel.jsx";
 import Reveal from "../components/Reveal.jsx";
 import { contacts, getLocalizedProduct } from "../data/catalog.js";
 import { assetPath } from "../lib/assets.js";
 import { AppLink } from "../lib/navigation.jsx";
+import Footer from "../sections/Footer.jsx";
 
 function ProductPage({ product, brand, copy, language }) {
   const localized = getLocalizedProduct(product, language);
@@ -173,7 +173,7 @@ function ProductPage({ product, brand, copy, language }) {
         </section>
       ) : null}
 
-      <ContactPanel copy={copy} />
+      <Footer copy={copy} />
     </>
   );
 }

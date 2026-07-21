@@ -22,7 +22,7 @@ export const contacts = {
 
 export const assets = {
   logo: "assets/site/logo.svg",
-  hero: "assets/site/seller-group-hero-showroom-v3.jpg",
+  hero: "assets/hero-showcases/hero.png",
   og: "og/seller-group-azerbaijan-og-v3.jpg?v=3",
 };
 
@@ -36,7 +36,8 @@ export const siteCopy = {
       ogDescription: "Строительные и отделочные материалы, доставка и ремонтные услуги.",
     },
     header: {
-      subtitle: "Поставка ремонтных, строительных материалов и услуг по всей стране",
+      subtitle: "Строительные, ремонтные материалы и услуги",
+      logoAlt: "Логотип Seller Group Azerbaijan",
       contact: "Связаться",
       menuOpen: "Открыть меню",
       menuClose: "Закрыть меню",
@@ -53,6 +54,7 @@ export const siteCopy = {
       home: "Главная",
       contactUs: "Связаться",
       viewBrand: "Перейти к товарам",
+      moreDetails: "Подробнее",
       productCatalog: "Каталог продукции",
       noProducts:
         "Ассортимент этого производителя уточняется. Свяжитесь с нами для подбора материалов под ваш объект.",
@@ -61,12 +63,29 @@ export const siteCopy = {
     },
     hero: {
       eyebrow: "Импорт из России и Турции",
-      title: "Официальный дистрибьютор\nстроительных и отделочных материалов",
-      text: "Официальные поставки строительных материалов из России и Турции.",
+      title: "Поставка ремонтных,\nстроительных материалов\nи услуг\nпо всей стране",
+      text:
+        "Официальный поставщик строительных материалов, ремонтных решений и услуг для бизнеса и частных клиентов.",
+      advantages: [
+        "Официальные поставки",
+        "Работаем по всему Азербайджану",
+        "B2B и B2C",
+        "Надежные бренды",
+      ],
       imageAlt:
         "Премиальный шоурум Seller Group Azerbaijan с витриной строительных и отделочных материалов",
       showcaseLabel: "Витрина реальных товаров Seller Group Azerbaijan",
-      showcaseTitle: "Витрина материалов",
+      showcaseTitle: "Премиальные бренды",
+      shelfPrevious: "Предыдущие товары",
+      shelfNext: "Следующие товары",
+    },
+    stats: {
+      items: [
+        { value: "6+", label: "официальных брендов" },
+        { value: "2", label: "страны импорта" },
+        { value: "24/7", label: "поддержка клиентов" },
+        { value: "1000+", label: "реализованных поставок" },
+      ],
     },
     about: {
       eyebrow: "О компании",
@@ -137,6 +156,30 @@ export const siteCopy = {
       title: "Производители, с которыми работает Seller Group Azerbaijan",
       intro:
         "Брендовые карточки ведут на отдельные страницы производителей с описанием направления, преимуществами и каталогом доступных продуктов.",
+    },
+    solutions: {
+      eyebrow: "Решения",
+      title: "Материалы и услуги под задачи объекта",
+      intro:
+        "Подбираем решения для защиты, ремонта, отделки и комплектации строительных объектов.",
+      items: [
+        {
+          title: "Гидроизоляция",
+          text: "Материалы для защиты поверхностей от влаги и протечек.",
+        },
+        {
+          title: "Защита фасадов",
+          text: "Покрытия для наружных работ и долговечной отделки.",
+        },
+        {
+          title: "Внутренняя отделка",
+          text: "Краски и материалы для аккуратного ремонта помещений.",
+        },
+        {
+          title: "Ремонтные услуги",
+          text: "Помощь в подборе специалистов и комплексном решении задач.",
+        },
+      ],
     },
     products: {
       eyebrow: "Продукция",
@@ -266,7 +309,8 @@ export const siteCopy = {
       ogDescription: "Tikinti və tamamlama materialları, çatdırılma və təmir xidmətləri.",
     },
     header: {
-      subtitle: "Tikinti, təmir materiallarının və xidmətlərinin ölkə üzrə təchizatı",
+      subtitle: "Tikinti, təmir materialları və xidmətlər",
+      logoAlt: "Seller Group Azerbaijan loqosu",
       contact: "Əlaqə saxla",
       menuOpen: "Menyunu aç",
       menuClose: "Menyunu bağla",
@@ -283,6 +327,7 @@ export const siteCopy = {
       home: "Əsas səhifə",
       contactUs: "Əlaqə saxla",
       viewBrand: "Məhsullara bax",
+      moreDetails: "Ətraflı",
       productCatalog: "Məhsul kataloqu",
       noProducts:
         "Bu istehsalçının assortimenti dəqiqləşdirilir. Obyektiniz üçün material seçimi barədə bizimlə əlaqə saxlayın.",
@@ -291,12 +336,29 @@ export const siteCopy = {
     },
     hero: {
       eyebrow: "Rusiya və Türkiyədən idxal",
-      title: "Tikinti və təmir materiallarının\nrəsmi distributoru",
-      text: "Rusiya və Türkiyədən tikinti materiallarının rəsmi təchizatçısı.",
+      title: "Təmir,\ntikinti materialları\nvə xidmətlərin\nölkə üzrə təchizatı",
+      text:
+        "Biznes və fərdi müştərilər üçün tikinti materialları, təmir həlləri və xidmətlərin rəsmi təchizatçısı.",
+      advantages: [
+        "Rəsmi təchizat",
+        "Bütün Azərbaycan üzrə işləyirik",
+        "B2B və B2C",
+        "Etibarlı brendlər",
+      ],
       imageAlt:
         "Seller Group Azerbaijan tikinti və tamamlama materialları vitrini olan premium şourum",
       showcaseLabel: "Seller Group Azerbaijan real məhsul vitrini",
-      showcaseTitle: "Material vitrini",
+      showcaseTitle: "Premium brendlər",
+      shelfPrevious: "Əvvəlki məhsullar",
+      shelfNext: "Növbəti məhsullar",
+    },
+    stats: {
+      items: [
+        { value: "6+", label: "rəsmi brend" },
+        { value: "2", label: "idxal ölkəsi" },
+        { value: "24/7", label: "müştəri dəstəyi" },
+        { value: "1000+", label: "reallaşdırılmış təchizat" },
+      ],
     },
     about: {
       eyebrow: "Şirkət haqqında",
@@ -367,6 +429,30 @@ export const siteCopy = {
       title: "Seller Group Azerbaijan-un işlədiyi istehsalçılar",
       intro:
         "Brend kartları istehsalçı səhifələrinə aparır: istiqamət, üstünlüklər və mövcud məhsul kataloqu bir yerdədir.",
+    },
+    solutions: {
+      eyebrow: "Həllər",
+      title: "Obyekt tapşırıqlarına uyğun material və xidmətlər",
+      intro:
+        "Qoruma, təmir, tamamlama və tikinti obyektlərinin komplektasiyası üçün həllər seçirik.",
+      items: [
+        {
+          title: "Hidroizolyasiya",
+          text: "Səthlərin nəm və sızmalardan qorunması üçün materiallar.",
+        },
+        {
+          title: "Fasad qoruması",
+          text: "Xarici işlər və uzunömürlü tamamlama üçün örtüklər.",
+        },
+        {
+          title: "Daxili tamamlama",
+          text: "Məkanların səliqəli təmiri üçün boyalar və materiallar.",
+        },
+        {
+          title: "Təmir xidmətləri",
+          text: "Ustaların seçimi və kompleks həllin təşkili üzrə dəstək.",
+        },
+      ],
     },
     products: {
       eyebrow: "Məhsullar",
@@ -502,7 +588,12 @@ export function getProductsByBrandId(brandId) {
 }
 
 export function getLocalizedBrand(brand, language) {
+  const name = brand[`name_${language}`] ?? brand.name ?? brand.displayName;
+
   return {
+    id: brand.id,
+    name,
+    displayName: name,
     country: brand[`country_${language}`],
     category: brand[`category_${language}`],
     description: brand[`description_${language}`],

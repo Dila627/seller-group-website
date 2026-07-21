@@ -29,7 +29,7 @@ function BrandPage({ brand, copy, language }) {
             </AppLink>
             <p className="mt-8 section-eyebrow text-copper-light">{copy.brandPage.manufacturer}</p>
             <h1 className="mt-4 text-5xl font-black leading-tight text-white sm:text-6xl">
-              {brand.name}
+              {localizedBrand.name}
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">
               {localizedBrand.description}
@@ -47,7 +47,7 @@ function BrandPage({ brand, copy, language }) {
             <Reveal className="rounded-3xl border border-white/[0.15] bg-white p-6 shadow-premium">
               <img
                 src={assetPath(brand.logo)}
-                alt={`${brand.name} logo`}
+                alt={`${localizedBrand.name} logo`}
                 className="mx-auto h-auto max-h-40 w-full object-contain"
               />
             </Reveal>
@@ -101,7 +101,7 @@ function BrandPage({ brand, copy, language }) {
             <p className="section-eyebrow text-copper-dark">{copy.brands.eyebrow}</p>
             <h2 className="mt-4 section-title text-graphite">{copy.brands.title}</h2>
           </Reveal>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="brand-related-grid mt-12">
             {relatedBrands.map((item) => (
               <Reveal key={item.id}>
                 <BrandCard brand={item} language={language} label={copy.common.viewBrand} />

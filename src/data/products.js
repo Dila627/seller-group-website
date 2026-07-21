@@ -26,13 +26,19 @@ function createProduct({
   surfaces = [],
   mainImage,
   gallery,
+  productLine = "",
   featured = false,
 }) {
+  const brandName = brandDisplayNames[brandId] ?? brandId;
+
   return {
     id,
     slug,
     brandId,
-    brand: brandDisplayNames[brandId] ?? brandId,
+    brand: brandName,
+    brand_ru: brandName,
+    brand_az: brandName,
+    productLine,
     category,
     type,
     name_ru,
@@ -980,7 +986,8 @@ export const products = [
   createProduct({
     id: "q8-emal-pf-115",
     slug: "q8-emal-pf-115",
-    brandId: "q8",
+    brandId: "prestige",
+    productLine: "Q8",
     category: "enamels",
     type: "enamel-pf-115",
     name_ru: "Q8 Эмаль ПФ-115",
@@ -995,7 +1002,8 @@ export const products = [
   createProduct({
     id: "q8-emal-pf-266",
     slug: "q8-emal-pf-266",
-    brandId: "q8",
+    brandId: "prestige",
+    productLine: "Q8",
     category: "enamels",
     type: "enamel-pf-266",
     name_ru: "Q8 Эмаль ПФ-266",
@@ -1010,7 +1018,8 @@ export const products = [
   createProduct({
     id: "q8-ceiling-paint",
     slug: "q8-ceiling-paint",
-    brandId: "q8",
+    brandId: "prestige",
+    productLine: "Q8",
     category: "paints",
     type: "ceiling-paint",
     name_ru: "Q8 Краска для потолков",
@@ -1025,7 +1034,8 @@ export const products = [
   createProduct({
     id: "q8-wall-ceiling-paint",
     slug: "q8-wall-ceiling-paint",
-    brandId: "q8",
+    brandId: "prestige",
+    productLine: "Q8",
     category: "paints",
     type: "wall-ceiling-paint",
     name_ru: "Q8 Краска для стен и потолков",
@@ -1040,7 +1050,8 @@ export const products = [
   createProduct({
     id: "q8-facade-paint",
     slug: "q8-facade-paint",
-    brandId: "q8",
+    brandId: "prestige",
+    productLine: "Q8",
     category: "paints",
     type: "facade-paint",
     name_ru: "Q8 Фасадная краска",
@@ -1055,7 +1066,8 @@ export const products = [
   createProduct({
     id: "q8-rust-primer-enamel-3in1",
     slug: "q8-rust-primer-enamel-3in1",
-    brandId: "q8",
+    brandId: "prestige",
+    productLine: "Q8",
     category: "primers",
     type: "primer-enamel",
     name_ru: "Q8 Грунт-эмаль по ржавчине 3 в 1",
@@ -1070,7 +1082,8 @@ export const products = [
   createProduct({
     id: "q8-primer-gf-021",
     slug: "q8-primer-gf-021",
-    brandId: "q8",
+    brandId: "prestige",
+    productLine: "Q8",
     category: "primers",
     type: "primer-gf-021",
     name_ru: "Q8 Грунтовка ГФ-021",
@@ -1085,7 +1098,8 @@ export const products = [
   createProduct({
     id: "ultralines-primer-enamel-3in1",
     slug: "ultralines-primer-enamel-3in1",
-    brandId: "ultralines",
+    brandId: "radugameller",
+    productLine: "Ultralines",
     category: "primers",
     type: "primer-enamel",
     name_ru: "Ultralines Грунт-эмаль 3 в 1",
@@ -1100,7 +1114,8 @@ export const products = [
   createProduct({
     id: "ultralines-emal-pf-115",
     slug: "ultralines-emal-pf-115",
-    brandId: "ultralines",
+    brandId: "radugameller",
+    productLine: "Ultralines",
     category: "enamels",
     type: "enamel-pf-115",
     name_ru: "Ultralines Эмаль ПФ-115",
@@ -1115,7 +1130,8 @@ export const products = [
   createProduct({
     id: "ultralines-emal-pf-266",
     slug: "ultralines-emal-pf-266",
-    brandId: "ultralines",
+    brandId: "radugameller",
+    productLine: "Ultralines",
     category: "enamels",
     type: "enamel-pf-266",
     name_ru: "Ultralines Эмаль ПФ-266",
@@ -1130,7 +1146,8 @@ export const products = [
   createProduct({
     id: "ultralines-facade-water-dispersion-paint",
     slug: "ultralines-facade-water-dispersion-paint",
-    brandId: "ultralines",
+    brandId: "radugameller",
+    productLine: "Ultralines",
     category: "paints",
     type: "facade-paint",
     name_ru: "Ultralines Фасадная водно-дисперсионная краска",
@@ -1145,7 +1162,8 @@ export const products = [
   createProduct({
     id: "ultralines-interior-water-dispersion-paint",
     slug: "ultralines-interior-water-dispersion-paint",
-    brandId: "ultralines",
+    brandId: "radugameller",
+    productLine: "Ultralines",
     category: "paints",
     type: "interior-paint",
     name_ru: "Ultralines Интерьерная водно-дисперсионная краска",
@@ -1176,6 +1194,7 @@ export const products = [
     id: "maler-wood-protective-lacquer",
     slug: "maler-wood-protective-lacquer",
     brandId: "radugameller",
+    productLine: "Maler",
     category: "wood-materials",
     type: "wood-varnish",
     name_ru: "Maler Wood Protective Lacquer — цветной лак для дерева",

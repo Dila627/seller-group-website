@@ -1,43 +1,36 @@
-import { ArrowRight } from "lucide-react";
-import { assets } from "../data/catalog.js";
+import { ArrowRight, BookOpen, Check, ChevronLeft, ChevronRight, Phone } from "lucide-react";
+import { useState } from "react";
+import {
+  assets,
+  getBrandById,
+  getLocalizedBrand,
+} from "../data/catalog.js";
 import { assetPath } from "../lib/assets.js";
 import { AppLink } from "../lib/navigation.jsx";
 
-const heroShowcases = [
+const heroShelfShowcases = [
   {
-    id: "prestige",
-    brand_ru: "Престиж",
-    brand_az: "Престиж",
+    brandId: "prestige",
     image: "assets/hero-showcases/hero_prestige_showcase.webp",
   },
   {
-    id: "novbytchim",
-    brand_ru: "Новбытхим",
-    brand_az: "Новбытхим",
+    brandId: "novbytchim",
     image: "assets/hero-showcases/hero_novbytchim_showcase.webp",
   },
   {
-    id: "izower",
-    brand_ru: "IZOWER",
-    brand_az: "IZOWER",
+    brandId: "izower",
     image: "assets/hero-showcases/hero_izower_showcase.webp",
   },
   {
-    id: "qis",
-    brand_ru: "QIS",
-    brand_az: "QIS",
+    brandId: "qis",
     image: "assets/hero-showcases/hero_qis_showcase.webp",
   },
   {
-    id: "silex",
-    brand_ru: "SILEX",
-    brand_az: "SILEX",
+    brandId: "silex",
     image: "assets/hero-showcases/hero_silex_showcase.webp",
   },
   {
-    id: "radugameller",
-    brand_ru: "Радуга Маляр",
-    brand_az: "Радуга Маляр",
+    brandId: "radugameller",
     image: "assets/hero-showcases/hero_radugamalar_showcase.webp",
   },
 ];
@@ -60,9 +53,125 @@ function handleHeroPointerLeave(event) {
   event.currentTarget.style.setProperty("--hero-y", "0px");
 }
 
-function HeroSection({ copy, language }) {
-  const heroImage = typeof assets.hero === "string" ? assets.hero : assets.hero[language] ?? assets.hero.ru;
+function getHeroShelfItems(language) {
+  return heroShelfShowcases
+    .map((item) => {
+      const brand = getBrandById(item.brandId);
 
+      if (!brand) {
+        return null;
+      }
+
+      return {
+        ...item,
+        brand,
+        localizedBrand: getLocalizedBrand(brand, language),
+      };
+    })
+    .filter(Boolean);
+}
+
+function HeroConveyorCard({ item, isDuplicate, onShowcaseLoad }) {
+  const { brand, image, localizedBrand } = item;
+
+  return (
+    <AppLink
+      href={`/brands/${brand.id}`}
+      className="focus-ring hero-product-card"
+      aria-hidden={isDuplicate ? "true" : undefined}
+      tabIndex={isDuplicate ? -1 : undefined}
+    >
+      <span className="hero-product-card__media">
+        <img
+          src={assetPath(image)}
+          alt={isDuplicate ? "" : `${localizedBrand.name} ${localizedBrand.category}`}
+          loading={isDuplicate ? "lazy" : "eager"}
+          decoding="async"
+          fetchPriority={isDuplicate ? "low" : "high"}
+          onLoad={isDuplicate ? undefined : () => onShowcaseLoad(brand.id)}
+          onError={isDuplicate ? undefined : () => onShowcaseLoad(brand.id)}
+        />
+      </span>
+      <span className="hero-product-card__body">
+        <span className="hero-product-card__brand">{localizedBrand.name}</span>
+        <span className="hero-product-card__title">{localizedBrand.category}</span>
+        <span className="hero-product-card__description">{localizedBrand.description}</span>
+      </span>
+    </AppLink>
+  );
+}
+
+function HeroProductConveyor({ copy, language }) {
+  const [conveyorDirection, setConveyorDirection] = useState("normal");
+  const [loadedShowcaseIds, setLoadedShowcaseIds] = useState(() => new Set());
+  const shelfItems = getHeroShelfItems(language);
+  const conveyorReady = loadedShowcaseIds.size >= shelfItems.length;
+
+  function markShowcaseLoaded(brandId) {
+    setLoadedShowcaseIds((currentIds) => {
+      if (currentIds.has(brandId)) {
+        return currentIds;
+      }
+
+      const nextIds = new Set(currentIds);
+      nextIds.add(brandId);
+      return nextIds;
+    });
+  }
+
+  return (
+    <div
+      className={`hero-reveal hero-reveal--shelf hero-product-shelf ${
+        conveyorReady ? "hero-product-shelf--ready" : ""
+      }`}
+      style={{ "--conveyor-direction": conveyorDirection }}
+    >
+      <div className="hero-product-shelf__viewport">
+        <div className="hero-product-shelf__track">
+          {[...shelfItems, ...shelfItems].map((item, index) => (
+            <HeroConveyorCard
+              key={`${item.brand.id}-${index}`}
+              item={item}
+              isDuplicate={index >= shelfItems.length}
+              onShowcaseLoad={markShowcaseLoaded}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="hero-product-shelf__controls" aria-hidden="false">
+        <button
+          type="button"
+          className="focus-ring hero-product-shelf__control"
+          aria-label={copy.hero.shelfPrevious}
+          onClick={() => setConveyorDirection("reverse")}
+        >
+          <ChevronLeft size={18} />
+        </button>
+        <button
+          type="button"
+          className="focus-ring hero-product-shelf__control"
+          aria-label={copy.hero.shelfNext}
+          onClick={() => setConveyorDirection("normal")}
+        >
+          <ChevronRight size={18} />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function renderHeroTitle(title) {
+  return title.split("\n").map((line, index) => (
+    <span
+      key={`${line}-${index}`}
+      className={`hero-title-line ${index === 1 || index === 2 ? "hero-title-line--accent" : ""}`}
+    >
+      {line}
+    </span>
+  ));
+}
+
+function HeroSection({ copy, language }) {
   return (
     <section
       id="top"
@@ -71,10 +180,12 @@ function HeroSection({ copy, language }) {
       onPointerLeave={handleHeroPointerLeave}
     >
       <img
-        src={assetPath(heroImage)}
-        alt={copy.hero.imageAlt}
-        fetchPriority="high"
         className="hero-premium__bg absolute inset-0 -z-30 h-full w-full object-cover"
+        src={assetPath(assets.hero)}
+        alt=""
+        aria-hidden="true"
+        decoding="async"
+        fetchPriority="high"
       />
       <div className="hero-premium__shade absolute inset-0 -z-20" />
       <div className="hero-premium__light absolute inset-0 -z-10" aria-hidden="true" />
@@ -87,21 +198,8 @@ function HeroSection({ copy, language }) {
 
       <div className="container-shell hero-premium__layout relative z-10 grid min-h-[690px] items-center gap-9 pb-14 pt-28 sm:min-h-[740px] sm:pb-16 sm:pt-32 lg:min-h-[790px] lg:grid-cols-[0.9fr_1.1fr]">
         <div className="hero-copy-panel">
-          <div className="hero-reveal hero-reveal--logo hero-sign">
-            <span className="hero-sign__mark">
-              <img src={assetPath(assets.logo)} alt="Seller Group Azerbaijan logo" />
-            </span>
-            <span>
-              <span className="hero-sign__name">Seller Group</span>
-              <span className="hero-sign__country">Azerbaijan</span>
-            </span>
-          </div>
-
-          <p className="hero-reveal hero-reveal--eyebrow mt-7 inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase text-copper-light backdrop-blur">
-            {copy.hero.eyebrow}
-          </p>
-          <h1 className="hero-reveal hero-reveal--title mt-6 max-w-3xl whitespace-pre-line text-4xl font-black leading-[1.04] text-white sm:text-5xl lg:text-6xl">
-            {copy.hero.title}
+          <h1 className="hero-reveal hero-reveal--title mt-6 max-w-3xl text-4xl font-black leading-[1.04] text-white sm:text-5xl lg:text-6xl">
+            {renderHeroTitle(copy.hero.title)}
           </h1>
           <p className="hero-reveal hero-reveal--text mt-5 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl">
             {copy.hero.text}
@@ -111,6 +209,7 @@ function HeroSection({ copy, language }) {
               href="/#contacts"
               className="focus-ring hero-action hero-action--primary inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-copper px-6 text-sm font-extrabold text-graphite transition hover:bg-copper-light"
             >
+              <Phone size={17} />
               {copy.common.contactUs}
               <ArrowRight className="hero-action__arrow" size={18} />
             </AppLink>
@@ -118,39 +217,22 @@ function HeroSection({ copy, language }) {
               href="/catalog"
               className="focus-ring hero-action hero-action--secondary inline-flex min-h-12 items-center justify-center rounded-full border border-white/25 bg-white/10 px-6 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white/[0.15]"
             >
+              <BookOpen size={17} />
               {copy.common.productCatalog}
             </AppLink>
           </div>
-        </div>
 
-        <div
-          className="hero-reveal hero-reveal--products hero-showcase"
-          aria-label={copy.hero.showcaseLabel}
-        >
-          <div className="hero-showcase__header">
-            <span>{copy.hero.showcaseTitle}</span>
-            <span>{heroShowcases.length}</span>
-          </div>
-          <div className="hero-showcase__rack">
-            {heroShowcases.map((showcase, index) => (
-              <figure
-                key={showcase.id}
-                className="hero-showcase-card premium-tilt-card"
-                style={{ "--showcase-index": index }}
-              >
-                <figcaption>{showcase[`brand_${language}`] ?? showcase.brand_ru}</figcaption>
-                <div className="hero-showcase-card__media">
-                  <img
-                    src={assetPath(showcase.image)}
-                    alt={`${showcase[`brand_${language}`] ?? showcase.brand_ru} — Seller Group Azerbaijan`}
-                    loading={index < 2 ? "eager" : "lazy"}
-                    decoding="async"
-                  />
-                </div>
-              </figure>
+          <div className="hero-reveal hero-reveal--advantages hero-advantages" aria-label={copy.hero.showcaseLabel}>
+            {copy.hero.advantages.map((item) => (
+              <span key={item}>
+                <Check size={16} />
+                {item}
+              </span>
             ))}
           </div>
         </div>
+
+        <HeroProductConveyor copy={copy} language={language} />
       </div>
     </section>
   );

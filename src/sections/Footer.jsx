@@ -5,9 +5,6 @@ import { assets, contacts } from "../data/catalog.js";
 import { assetPath } from "../lib/assets.js";
 import { AppLink } from "../lib/navigation.jsx";
 
-const paintPath =
-  "M -40 104 C 130 158 230 72 390 102 C 540 136 628 145 755 92 C 895 34 1015 132 1155 98 C 1310 60 1408 146 1640 70";
-
 function FooterIcon({ icon: Icon }) {
   return (
     <span className="footer-icon">
@@ -43,59 +40,6 @@ function ContactItem({ icon, label, children, href, external = false }) {
   return <div className="footer-info-link">{content}</div>;
 }
 
-function PaintFlow() {
-  return (
-    <div className="footer-paint-flow" aria-hidden="true">
-      <div className="footer-paint-flow__track">
-        <svg
-          className="footer-paint-flow__svg"
-          viewBox="0 0 1600 180"
-          preserveAspectRatio="none"
-        >
-          <defs>
-            <linearGradient id="paintRibbonGradient" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#A93428" />
-              <stop offset="24%" stopColor="#C99552" />
-              <stop offset="48%" stopColor="#D7B24A" />
-              <stop offset="68%" stopColor="#2E6CA8" />
-              <stop offset="100%" stopColor="#4E9B42" />
-            </linearGradient>
-            <linearGradient id="paintRibbonHighlight" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="rgba(255,255,255,0)" />
-              <stop offset="18%" stopColor="rgba(255,255,255,0.58)" />
-              <stop offset="52%" stopColor="rgba(255,255,255,0.22)" />
-              <stop offset="82%" stopColor="rgba(255,255,255,0.46)" />
-              <stop offset="100%" stopColor="rgba(255,255,255,0)" />
-            </linearGradient>
-            <filter id="paintRibbonGlow" x="-8%" y="-80%" width="116%" height="260%">
-              <feGaussianBlur stdDeviation="4" result="blur" />
-              <feColorMatrix
-                in="blur"
-                type="matrix"
-                values="1 0 0 0 0.78  0 1 0 0 0.48  0 0 1 0 0.22  0 0 0 0.34 0"
-                result="glow"
-              />
-              <feMerge>
-                <feMergeNode in="glow" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-
-          <path className="footer-paint-flow__shadow" d={paintPath} />
-          <path id="footerPaintPath" className="footer-paint-flow__path" d={paintPath} />
-          <path className="footer-paint-flow__highlight" d={paintPath} />
-        </svg>
-
-        <span className="paint-drop paint-drop--red" />
-        <span className="paint-drop paint-drop--yellow" />
-        <span className="paint-drop paint-drop--blue" />
-        <span className="paint-drop paint-drop--green" />
-      </div>
-    </div>
-  );
-}
-
 function Footer({ copy }) {
   const footer = copy.footer;
   const contact = copy.contact;
@@ -127,31 +71,81 @@ function Footer({ copy }) {
     },
   ];
 
+  const contactItems = [
+    {
+      id: "phone",
+      icon: Phone,
+      label: contact.labels.phone,
+      href: contacts.phoneHref,
+      value: contacts.phoneDisplay,
+    },
+    {
+      id: "email",
+      icon: Mail,
+      label: contact.labels.email,
+      href: contacts.emailHref,
+      value: contacts.email,
+    },
+    {
+      id: "address",
+      icon: MapPin,
+      label: contact.labels.address,
+      href: contacts.mapHref,
+      value: contacts.address,
+      external: true,
+    },
+    {
+      id: "work",
+      icon: Clock3,
+      label: footer.workTitle,
+      value: (
+        <>
+          {footer.workDays}
+          <span className="footer-work-hours">{footer.workHours}</span>
+        </>
+      ),
+    },
+  ];
+
   return (
     <footer id="contacts" className="site-footer scroll-mt-28">
       <div className="footer-shell">
         <div className="footer-grid">
+          <Reveal as="section" className="footer-column footer-column--brand">
+            <div className="footer-brand">
+              <span className="footer-brand-logo">
+                <img
+                  src={assetPath(assets.logo)}
+                  alt={copy.header.logoAlt}
+                  width="96"
+                  height="96"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </span>
+              <div>
+                <p className="footer-brand-name">Seller Group</p>
+                <p className="footer-brand-country">Azerbaijan</p>
+              </div>
+              <p className="footer-brand-tagline">{copy.header.subtitle}</p>
+              <p className="footer-brand-description">{footer.description}</p>
+            </div>
+          </Reveal>
+
           <Reveal as="section" className="footer-column footer-column--1">
             <h2 className="footer-column-title">{footer.contactTitle}</h2>
             <div className="footer-info-list">
-              <ContactItem icon={Phone} label={contact.labels.phone} href={contacts.phoneHref}>
-                {contacts.phoneDisplay}
-              </ContactItem>
-              <ContactItem icon={Mail} label={contact.labels.email} href={contacts.emailHref}>
-                {contacts.email}
-              </ContactItem>
-              <ContactItem
-                icon={MapPin}
-                label={contact.labels.address}
-                href={contacts.mapHref}
-                external
-              >
-                {contacts.address}
-              </ContactItem>
-              <ContactItem icon={Clock3} label={footer.workTitle}>
-                {footer.workDays}
-                <span className="footer-work-hours">{footer.workHours}</span>
-              </ContactItem>
+              {contactItems.map((item) => (
+                <ContactItem
+                  key={item.id}
+                  icon={item.icon}
+                  label={item.label}
+                  href={item.href}
+                  external={item.external}
+                >
+                  {item.value}
+                </ContactItem>
+              ))}
             </div>
           </Reveal>
 
@@ -197,29 +191,7 @@ function Footer({ copy }) {
               })}
             </div>
           </Reveal>
-
-          <Reveal as="section" className="footer-column footer-column--4">
-            <div className="footer-brand">
-              <span className="footer-brand-logo">
-                <img
-                  src={assetPath(assets.logo)}
-                  alt="Seller Group Azerbaijan logo"
-                  width="96"
-                  height="96"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </span>
-              <div>
-                <p className="footer-brand-name">Seller Group</p>
-                <p className="footer-brand-country">Azerbaijan</p>
-              </div>
-              <p className="footer-brand-tagline">{footer.brandTagline}</p>
-            </div>
-          </Reveal>
         </div>
-
-        <PaintFlow />
 
         <div className="footer-bottom">
           <p>© 2026 Seller Group Azerbaijan</p>

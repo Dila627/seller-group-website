@@ -1,17 +1,17 @@
 export const brandDisplayNames = {
   prestige: "Престиж",
   novbytchim: "Новбытхим",
-  radugameller: "Радуга Маляр",
+  radugameller: "РадугаМалер",
   izower: "IZOWER",
   qis: "QIS",
   silex: "SILEX",
-  q8: "Q8",
-  ultralines: "Ultralines",
 };
 
 export const brands = [
   {
     id: "prestige",
+    name_ru: brandDisplayNames.prestige,
+    name_az: brandDisplayNames.prestige,
     displayName: brandDisplayNames.prestige,
     name: brandDisplayNames.prestige,
     country_ru: "Россия",
@@ -37,6 +37,8 @@ export const brands = [
   },
   {
     id: "novbytchim",
+    name_ru: brandDisplayNames.novbytchim,
+    name_az: brandDisplayNames.novbytchim,
     displayName: brandDisplayNames.novbytchim,
     name: brandDisplayNames.novbytchim,
     country_ru: "Россия",
@@ -62,6 +64,8 @@ export const brands = [
   },
   {
     id: "radugameller",
+    name_ru: brandDisplayNames.radugameller,
+    name_az: brandDisplayNames.radugameller,
     displayName: brandDisplayNames.radugameller,
     name: brandDisplayNames.radugameller,
     country_ru: "Россия",
@@ -71,9 +75,9 @@ export const brands = [
     logo: "assets/brands/radugameller.svg",
     accent: "#b88653",
     description_ru:
-      "Лакокрасочные материалы Радуга Маляр для ремонтных и отделочных задач.",
+      "Лакокрасочные материалы РадугаМалер для ремонтных и отделочных задач.",
     description_az:
-      "Təmir və tamamlama işləri üçün Радуга Маляр boya materialları.",
+      "Təmir və tamamlama işləri üçün РадугаМалер boya materialları.",
     advantages_ru: [
       "Материалы для отделочных работ",
       "Решения для частных и профессиональных объектов",
@@ -86,32 +90,9 @@ export const brands = [
     ],
   },
   {
-    id: "silex",
-    displayName: brandDisplayNames.silex,
-    name: brandDisplayNames.silex,
-    country_ru: "Россия",
-    country_az: "Rusiya",
-    category_ru: "Минеральные и фасадные покрытия",
-    category_az: "Mineral və fasad örtükləri",
-    logo: "assets/brands/silex.svg",
-    accent: "#0b1f3a",
-    description_ru:
-      "Материалы SILEX для гидроизоляции, защиты и строительной химии.",
-    description_az:
-      "Hidroizolyasiya, qoruma və tikinti kimyası üçün SILEX materialları.",
-    advantages_ru: [
-      "Материалы для фасадных задач",
-      "Подбор под профессиональную комплектацию объекта",
-      "Решения для минеральных оснований",
-    ],
-    advantages_az: [
-      "Fasad tapşırıqları üçün materiallar",
-      "Obyektin peşəkar komplektasiyasına uyğun seçim",
-      "Mineral əsaslar üçün həllər",
-    ],
-  },
-  {
     id: "izower",
+    name_ru: brandDisplayNames.izower,
+    name_az: brandDisplayNames.izower,
     displayName: brandDisplayNames.izower,
     name: brandDisplayNames.izower,
     country_ru: "Турция",
@@ -137,6 +118,8 @@ export const brands = [
   },
   {
     id: "qis",
+    name_ru: brandDisplayNames.qis,
+    name_az: brandDisplayNames.qis,
     displayName: brandDisplayNames.qis,
     name: brandDisplayNames.qis,
     country_ru: "Турция",
@@ -161,55 +144,30 @@ export const brands = [
     ],
   },
   {
-    id: "q8",
-    displayName: brandDisplayNames.q8,
-    name: brandDisplayNames.q8,
+    id: "silex",
+    name_ru: brandDisplayNames.silex,
+    name_az: brandDisplayNames.silex,
+    displayName: brandDisplayNames.silex,
+    name: brandDisplayNames.silex,
     country_ru: "Россия",
     country_az: "Rusiya",
-    category_ru: "Лакокрасочные материалы",
-    category_az: "Boya materialları",
-    logo: "",
-    accent: "#b88653",
-    showInBrandSection: false,
-    description_ru:
-      "Лакокрасочные материалы Q8 для ремонтных и отделочных работ.",
-    description_az:
-      "Təmir və tamamlama işləri üçün Q8 boya materialları.",
-    advantages_ru: [
-      "Ассортимент для ремонта и отделки",
-      "Материалы для внутренних и наружных задач",
-      "Подбор товара под объект",
-    ],
-    advantages_az: [
-      "Təmir və tamamlanma üçün assortiment",
-      "Daxili və xarici işlər üçün materiallar",
-      "Obyektə uyğun məhsul seçimi",
-    ],
-  },
-  {
-    id: "ultralines",
-    displayName: brandDisplayNames.ultralines,
-    name: brandDisplayNames.ultralines,
-    country_ru: "Россия",
-    country_az: "Rusiya",
-    category_ru: "Краски, эмали и грунт-эмали",
-    category_az: "Boyalar, emallar və astar-emallar",
-    logo: "",
+    category_ru: "Минеральные и фасадные покрытия",
+    category_az: "Mineral və fasad örtükləri",
+    logo: "assets/brands/silex.svg",
     accent: "#0b1f3a",
-    showInBrandSection: false,
     description_ru:
-      "Материалы Ultralines для окраски и подготовки строительных поверхностей.",
+      "Материалы SILEX для гидроизоляции, защиты и строительной химии.",
     description_az:
-      "Tikinti səthlərinin boyanması və hazırlanması üçün Ultralines materialları.",
+      "Hidroizolyasiya, qoruma və tikinti kimyası üçün SILEX materialları.",
     advantages_ru: [
-      "Материалы для базовых ремонтных задач",
-      "Решения для интерьерных и фасадных работ",
-      "Консультация перед подбором",
+      "Материалы для фасадных задач",
+      "Подбор под профессиональную комплектацию объекта",
+      "Решения для минеральных оснований",
     ],
     advantages_az: [
-      "Əsas təmir işləri üçün materiallar",
-      "İnteryer və fasad işləri üçün həllər",
-      "Seçimdən əvvəl məsləhət",
+      "Fasad tapşırıqları üçün materiallar",
+      "Obyektin peşəkar komplektasiyasına uyğun seçim",
+      "Mineral əsaslar üçün həllər",
     ],
   },
 ];

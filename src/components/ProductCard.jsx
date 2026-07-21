@@ -1,10 +1,11 @@
 import { ArrowRight, PackageCheck } from "lucide-react";
-import { getLocalizedProduct } from "../data/catalog.js";
+import { getLocalizedBrand, getLocalizedProduct } from "../data/catalog.js";
 import { assetPath } from "../lib/assets.js";
 import { AppLink } from "../lib/navigation.jsx";
 
 function ProductCard({ product, brand, language, label }) {
   const localized = getLocalizedProduct(product, language);
+  const localizedBrand = brand ? getLocalizedBrand(brand, language) : { name: product.brand };
 
   return (
     <article className="group grid w-full min-w-0 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-premium md:grid-cols-[0.42fr_0.58fr]">
@@ -25,7 +26,7 @@ function ProductCard({ product, brand, language, label }) {
       <div className="flex min-w-0 flex-col p-6">
         <div className="flex flex-wrap items-center gap-2">
           <span className="rounded-full bg-copper/10 px-3 py-1 text-[0.68rem] font-black uppercase text-copper-dark">
-            {brand.name}
+            {localizedBrand.name}
           </span>
           <span className="rounded-full bg-slate-100 px-3 py-1 text-[0.68rem] font-black uppercase text-slate-600">
             {localized.category}

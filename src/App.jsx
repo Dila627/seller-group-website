@@ -76,7 +76,7 @@ function getRouteSeo(route, copy, language) {
     const brand = getLocalizedBrand(route.brand, language);
 
     return {
-      title: `${route.brand.name} | Seller Group Azerbaijan`,
+      title: `${brand.name} | Seller Group Azerbaijan`,
       description: brand.description,
       image: route.brand.logo
         ? new URL(assetPath(route.brand.logo), window.location.origin).href
@@ -88,10 +88,11 @@ function getRouteSeo(route, copy, language) {
 
   if (route.type === "product") {
     const product = getLocalizedProduct(route.product, language);
+    const brand = getLocalizedBrand(route.brand, language);
     const image = route.product.mainImage ?? getHeroImage(language);
 
     return {
-      title: `${product.title} | ${route.brand.name} | Seller Group Azerbaijan`,
+      title: `${product.title} | ${brand.name} | Seller Group Azerbaijan`,
       description: product.shortDescription,
       image: new URL(assetPath(image), window.location.origin).href,
       url,
@@ -144,6 +145,7 @@ function getStructuredData(route, language) {
 
   if (route.type === "product") {
     const product = getLocalizedProduct(route.product, language);
+    const brand = getLocalizedBrand(route.brand, language);
     const image = route.product.mainImage ?? getHeroImage(language);
 
     return {
@@ -153,7 +155,7 @@ function getStructuredData(route, language) {
       description: product.shortDescription,
       brand: {
         "@type": "Brand",
-        name: route.brand.name,
+        name: brand.name,
       },
       image: new URL(assetPath(image), window.location.origin).href,
     };
@@ -165,7 +167,7 @@ function getStructuredData(route, language) {
     const brandData = {
       "@context": "https://schema.org",
       "@type": "Brand",
-      name: route.brand.name,
+      name: brand.name,
       description: brand.description,
     };
 

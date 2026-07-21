@@ -3,9 +3,11 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import CatalogProductCard from "../components/CatalogProductCard.jsx";
 import Reveal from "../components/Reveal.jsx";
 import {
+  brands,
   catalogOptions,
   getBrandById,
   getCatalogOptionLabel,
+  getLocalizedBrand,
   getLocalizedProduct,
   products,
 } from "../data/catalog.js";
@@ -56,7 +58,8 @@ function getFilterLabel(field, value, language) {
   }
 
   if (field === "brand") {
-    return getBrandById(value)?.name ?? value;
+    const brand = getBrandById(value);
+    return brand ? getLocalizedBrand(brand, language).name : value;
   }
 
   const groupByField = {
@@ -100,8 +103,11 @@ function sortProducts(items, sort, language) {
     }
 
     if (sort === "brand") {
-      return (getBrandById(a.brandId)?.name ?? "").localeCompare(
-        getBrandById(b.brandId)?.name ?? "",
+      const brandA = getBrandById(a.brandId);
+      const brandB = getBrandById(b.brandId);
+
+      return (brandA ? getLocalizedBrand(brandA, language).name : "").localeCompare(
+        brandB ? getLocalizedBrand(brandB, language).name : "",
         language,
       );
     }
@@ -251,7 +257,7 @@ function CatalogPage({ copy, language }) {
 
   const filterFields = useMemo(() => {
     const idsByGroup = {
-      brands: [...new Set(products.map((product) => product.brandId).filter(Boolean))],
+      brands: brands.map((brand) => brand.id),
       categories: [...new Set(products.map((product) => product.category).filter(Boolean))],
       purposes: [...new Set(products.flatMap((product) => product.purposeKeys ?? []))],
       productTypes: [...new Set(products.map((product) => product.type).filter(Boolean))],
@@ -261,7 +267,10 @@ function CatalogPage({ copy, language }) {
       brands: idsByGroup.brands
         .map((id) => getBrandById(id))
         .filter(Boolean)
-        .map((brand) => ({ id: brand.id, label: brand.name })),
+        .map((brand) => ({
+          id: brand.id,
+          label: getLocalizedBrand(brand, language).name,
+        })),
       categories: catalogOptions.categories
         .filter((item) => idsByGroup.categories.includes(item.id))
         .map((item) => ({ id: item.id, label: item[`label_${language}`] })),
@@ -373,7 +382,9 @@ function CatalogPage({ copy, language }) {
         [
           product.name_ru,
           product.name_az,
-          brand?.name,
+          brand ? getLocalizedBrand(brand, "ru").name : "",
+          brand ? getLocalizedBrand(brand, "az").name : "",
+          product.productLine,
           categoryRu,
           categoryAz,
           typeRu,

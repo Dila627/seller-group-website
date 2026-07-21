@@ -8,13 +8,14 @@ import {
 import { FaWhatsapp } from "react-icons/fa";
 import { useState } from "react";
 import Reveal from "../components/Reveal.jsx";
-import { contacts, getLocalizedProduct } from "../data/catalog.js";
+import { contacts, getLocalizedBrand, getLocalizedProduct } from "../data/catalog.js";
 import { assetPath } from "../lib/assets.js";
 import { AppLink } from "../lib/navigation.jsx";
 import Footer from "../sections/Footer.jsx";
 
 function ProductPage({ product, brand, copy, language }) {
   const localized = getLocalizedProduct(product, language);
+  const localizedBrand = getLocalizedBrand(brand, language);
   const gallery = product.gallery ?? [];
   const consultationMessage = `${copy.productPage.consultationMessagePrefix} ${localized.title}.`;
   const whatsappHref = `${contacts.whatsappHref}?text=${encodeURIComponent(consultationMessage)}`;
@@ -49,7 +50,7 @@ function ProductPage({ product, brand, copy, language }) {
             ) : null}
 
             <dl className="mt-8 grid gap-3 sm:grid-cols-2">
-              <ProductFact label={copy.productPage.brand} value={brand.name} />
+              <ProductFact label={copy.productPage.brand} value={localizedBrand.name} />
               <ProductFact label={copy.productPage.category} value={localized.category} />
               <ProductFact label={copy.productPage.type} value={localized.type} />
               <ProductFact label={copy.productPage.purpose} value={localized.purpose} />

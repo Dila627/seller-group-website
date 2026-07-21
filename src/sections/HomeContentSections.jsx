@@ -2,10 +2,15 @@ import {
   ArrowRight,
   Building2,
   CheckCircle2,
+  Droplets,
   Factory,
+  Globe2,
+  Layers3,
   PackageCheck,
+  PaintRoller,
   ShieldCheck,
   Truck,
+  UsersRound,
   Wrench,
 } from "lucide-react";
 import BrandCard from "../components/BrandCard.jsx";
@@ -14,6 +19,13 @@ import Reveal from "../components/Reveal.jsx";
 import SectionHeading from "../components/SectionHeading.jsx";
 import { brands, getBrandById, products } from "../data/catalog.js";
 import { AppLink } from "../lib/navigation.jsx";
+
+const solutionVisuals = [
+  { icon: Droplets },
+  { icon: ShieldCheck },
+  { icon: PaintRoller },
+  { icon: Wrench },
+];
 
 export function AboutSection({ copy }) {
   const icons = [Building2, Factory, ShieldCheck, CheckCircle2];
@@ -121,17 +133,81 @@ export function BrandsSection({ copy, language }) {
   const visibleBrands = brands.filter((brand) => brand.showInBrandSection !== false);
 
   return (
-    <section id="brands" className="section-padding scroll-mt-28 bg-white">
+    <section id="brands" className="home-brands-section section-padding scroll-mt-28">
       <div className="container-shell">
         <Reveal>
           <SectionHeading {...copy.brands} />
         </Reveal>
-        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {visibleBrands.map((brand) => (
-            <Reveal key={brand.id}>
-              <BrandCard brand={brand} language={language} label={copy.common.viewBrand} />
-            </Reveal>
-          ))}
+        <div className="brand-premium-grid mt-12">
+          {visibleBrands.map((brand) => {
+            return (
+              <Reveal key={brand.id}>
+                <BrandCard
+                  brand={brand}
+                  language={language}
+                  label={copy.common.moreDetails}
+                />
+              </Reveal>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function StatsSection({ copy }) {
+  const icons = [Building2, Globe2, UsersRound, Truck];
+
+  return (
+    <section className="home-stats-section">
+      <div className="container-shell">
+        <Reveal className="home-stats-panel">
+          {copy.stats.items.map((item, index) => {
+            const Icon = icons[index] ?? CheckCircle2;
+
+            return (
+              <div key={`${item.value}-${item.label}`} className="home-stat-item">
+                <span className="home-stat-icon">
+                  <Icon size={26} />
+                </span>
+                <span className="home-stat-value">{item.value}</span>
+                <span className="home-stat-label">{item.label}</span>
+              </div>
+            );
+          })}
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export function SolutionsSection({ copy }) {
+  return (
+    <section className="solutions-section section-padding">
+      <div className="container-shell">
+        <Reveal>
+          <SectionHeading {...copy.solutions} />
+        </Reveal>
+        <div className="solutions-grid mt-12">
+          {copy.solutions.items.map((item, index) => {
+            const visual = solutionVisuals[index] ?? solutionVisuals[0];
+            const Icon = visual.icon ?? Layers3;
+
+            return (
+              <Reveal key={item.title}>
+                <article className="solution-card">
+                  <div className="solution-card__content">
+                    <span className="solution-card__icon">
+                      <Icon size={24} />
+                    </span>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </div>
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -26,27 +26,35 @@ function Header({ copy, language, onLanguageChange }) {
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
         scrolled
-          ? "border-slate-200 bg-white/[0.96] py-3 shadow-[0_14px_40px_rgba(15,23,42,0.10)] backdrop-blur"
-          : "border-white/20 bg-white/90 py-4 backdrop-blur"
+          ? "border-white/[0.06] bg-[rgba(10,12,18,0.8)] py-3 shadow-[0_18px_54px_rgba(0,0,0,0.28)] backdrop-blur-[20px]"
+          : "border-white/[0.06] bg-[rgba(6,12,22,0.64)] py-4 shadow-[0_18px_54px_rgba(0,0,0,0.16)] backdrop-blur-[18px]"
       }`}
     >
       <div className="container-shell flex items-center justify-between gap-4">
         <AppLink href="/" onClick={closeMenu} className="flex min-w-0 items-center gap-3">
-          <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+          <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-[14px] border border-slate-200 bg-white p-2 shadow-[0_8px_24px_rgba(0,0,0,0.12)] sm:h-[54px] sm:w-[54px]">
             <img
               src={assetPath(assets.logo)}
-              alt="Seller Group Azerbaijan logo"
-              width="48"
-              height="48"
+              alt={copy.header.logoAlt}
+              width="44"
+              height="44"
               decoding="async"
               className="h-full w-full object-contain"
             />
           </span>
           <span className="min-w-0 max-w-[190px] sm:max-w-none">
-            <span className="block text-sm font-black leading-[1.08] text-graphite sm:text-base sm:leading-tight">
+            <span
+              className={`block text-sm font-black leading-[1.08] sm:text-base sm:leading-tight ${
+                scrolled ? "text-white" : "text-white"
+              }`}
+            >
               Seller Group Azerbaijan
             </span>
-            <span className="block max-h-[24px] overflow-hidden text-[9px] font-semibold leading-[11px] text-slate-500 sm:max-h-none sm:text-xs sm:leading-4">
+            <span
+              className={`block max-h-[24px] overflow-hidden text-[9px] font-semibold leading-[11px] sm:max-h-none sm:text-xs sm:leading-4 ${
+                scrolled ? "text-slate-300" : "text-slate-300"
+              }`}
+            >
               {copy.header.subtitle}
             </span>
           </span>
@@ -57,7 +65,9 @@ function Header({ copy, language, onLanguageChange }) {
             <AppLink
               key={item.href}
               href={item.href}
-              className="text-sm font-bold text-slate-600 transition hover:text-navy"
+              className={`text-sm font-bold transition ${
+                scrolled ? "text-slate-200 hover:text-copper-light" : "text-slate-200 hover:text-copper-light"
+              }`}
             >
               {item.label}
             </AppLink>
@@ -72,7 +82,11 @@ function Header({ copy, language, onLanguageChange }) {
           />
           <AppLink
             href="/#contacts"
-            className="focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-navy px-5 text-sm font-extrabold text-white transition hover:bg-graphite"
+            className={`focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-sm font-extrabold transition ${
+              scrolled
+                ? "border border-copper/70 bg-white/[0.05] text-white shadow-[0_0_30px_rgba(201,149,82,0.16)] hover:bg-copper hover:text-graphite"
+                : "border border-copper/70 bg-white/[0.04] text-white shadow-[0_0_30px_rgba(201,149,82,0.14)] hover:bg-copper hover:text-graphite"
+            }`}
           >
             <Phone size={17} />
             {copy.header.contact}

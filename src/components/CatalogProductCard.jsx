@@ -1,12 +1,13 @@
 import { ArrowRight, PackageCheck } from "lucide-react";
 import { useState } from "react";
-import { getLocalizedProduct } from "../data/catalog.js";
+import { getLocalizedBrand, getLocalizedProduct } from "../data/catalog.js";
 import { assetPath } from "../lib/assets.js";
 import { AppLink } from "../lib/navigation.jsx";
 
 function CatalogProductCard({ product, brand, language, copy }) {
   const [imageFailed, setImageFailed] = useState(false);
   const localized = getLocalizedProduct(product, language);
+  const localizedBrand = brand ? getLocalizedBrand(brand, language) : { name: product.brand };
   const description = localized.shortDescription || copy.fallbackDescription;
   const image = product.mainImage;
 
@@ -31,7 +32,7 @@ function CatalogProductCard({ product, brand, language, copy }) {
       <div className="flex min-h-0 flex-1 flex-col p-5 pt-4">
         <div className="flex flex-wrap items-center gap-2">
           <span className="rounded-full bg-copper/10 px-3 py-1 text-[0.68rem] font-black uppercase text-copper-dark">
-            {brand.name}
+            {localizedBrand.name}
           </span>
           <span className="rounded-full bg-slate-100 px-3 py-1 text-[0.68rem] font-black uppercase text-slate-600">
             {localized.category}

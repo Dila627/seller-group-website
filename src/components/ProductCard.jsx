@@ -14,7 +14,10 @@ function ProductCard({ product, brand, language, label }) {
           <img
             src={assetPath(product.mainImage)}
             alt={localized.title}
+            width="640"
+            height="480"
             loading="lazy"
+            decoding="async"
             className="product-card-image max-h-64 w-full object-contain"
           />
         ) : (

@@ -31,7 +31,7 @@ export function AboutSection({ copy }) {
   const icons = [Building2, Factory, ShieldCheck, CheckCircle2];
 
   return (
-    <section id="about" className="section-padding scroll-mt-28 bg-white">
+    <section id="about" className="home-about-section section-padding scroll-mt-28">
       <div className="container-shell">
         <Reveal>
           <SectionHeading {...copy.about} />
@@ -58,7 +58,7 @@ export function AboutSection({ copy }) {
 
 export function AudienceSection({ copy }) {
   return (
-    <section className="section-padding bg-slate-100">
+    <section className="home-audience-section section-padding">
       <div className="container-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
         <Reveal>
           <SectionHeading {...copy.audience} />
@@ -84,7 +84,7 @@ export function ServicesSection({ copy }) {
   const highlightIcons = [Wrench, Truck];
 
   return (
-    <section id="services" className="section-padding scroll-mt-28 bg-white">
+    <section id="services" className="home-services-section section-padding scroll-mt-28">
       <div className="container-shell">
         <div className="grid gap-10 lg:grid-cols-[0.76fr_1.24fr] lg:items-start">
           <Reveal>
@@ -218,7 +218,7 @@ export function ProductsSection({ copy, language }) {
   const featuredProducts = products.filter((product) => product.featured).slice(0, 6);
 
   return (
-    <section id="products" className="section-padding scroll-mt-28 bg-slate-100">
+    <section id="products" className="home-products-section section-padding scroll-mt-28">
       <div className="container-shell">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_auto] lg:items-end">
           <Reveal>

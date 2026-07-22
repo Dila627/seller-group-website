@@ -13,7 +13,10 @@ function BrandCard({ brand, language, label }) {
           <img
             src={assetPath(brand.logo)}
             alt={`${localized.name} logo`}
+            width="180"
+            height="88"
             loading="lazy"
+            decoding="async"
           />
         </div>
       </div>

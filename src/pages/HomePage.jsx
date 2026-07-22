@@ -12,7 +12,7 @@ import HeroSection from "../sections/HeroSection.jsx";
 
 function HomePage({ copy, language }) {
   return (
-    <>
+    <main className="home-page">
       <HeroSection copy={copy} language={language} />
       <BrandsSection copy={copy} language={language} />
       <StatsSection copy={copy} />
@@ -22,7 +22,7 @@ function HomePage({ copy, language }) {
       <ServicesSection copy={copy} />
       <ProductsSection copy={copy} language={language} />
       <Footer copy={copy} />
-    </>
+    </main>
   );
 }
 

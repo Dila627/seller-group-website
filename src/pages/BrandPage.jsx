@@ -48,6 +48,11 @@ function BrandPage({ brand, copy, language }) {
               <img
                 src={assetPath(brand.logo)}
                 alt={`${localizedBrand.name} logo`}
+                width="360"
+                height="180"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
                 className="mx-auto h-auto max-h-40 w-full object-contain"
               />
             </Reveal>

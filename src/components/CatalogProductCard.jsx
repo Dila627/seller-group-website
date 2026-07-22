@@ -18,7 +18,10 @@ function CatalogProductCard({ product, brand, language, copy }) {
           <img
             src={assetPath(image)}
             alt={localized.title}
+            width="640"
+            height="480"
             loading="lazy"
+            decoding="async"
             onError={() => setImageFailed(true)}
             className="catalog-product-image object-contain object-center transition duration-300"
           />

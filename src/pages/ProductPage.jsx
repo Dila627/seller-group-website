@@ -164,7 +164,10 @@ function ProductPage({ product, brand, copy, language }) {
                   <img
                     src={assetPath(image)}
                     alt={localized.title}
+                    width="640"
+                    height="480"
                     loading="lazy"
+                    decoding="async"
                     className="max-h-48 w-full object-contain"
                   />
                 </Reveal>
@@ -205,6 +208,10 @@ function ProductVisual({ product, title, priority = false }) {
       <img
         src={assetPath(image)}
         alt={title}
+        width="800"
+        height="600"
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
         onError={() => setImageFailed(true)}
         className="product-detail-image mx-auto aspect-[4/3] max-h-[520px] w-full object-contain object-center"
         fetchPriority={priority ? "high" : undefined}

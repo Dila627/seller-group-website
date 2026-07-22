@@ -32,14 +32,14 @@ function Header({ copy, language, onLanguageChange }) {
     >
       <div className="container-shell flex items-center justify-between gap-4">
         <AppLink href="/" onClick={closeMenu} className="flex min-w-0 items-center gap-3">
-          <span className="company-logo-surface grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-[14px] border border-slate-200 bg-white p-2 shadow-[0_8px_24px_rgba(0,0,0,0.12)] sm:h-[54px] sm:w-[54px]">
+          <span className="header-logo-wrapper grid h-12 w-12 shrink-0 place-items-center sm:h-[54px] sm:w-[54px]">
             <img
               src={assetPath(assets.logo)}
               alt={copy.header.logoAlt}
               width="44"
               height="44"
               decoding="async"
-              className="h-full w-full object-contain"
+              className="header-logo-image h-full w-full object-contain"
             />
           </span>
           <span className="min-w-0 max-w-[190px] sm:max-w-none">

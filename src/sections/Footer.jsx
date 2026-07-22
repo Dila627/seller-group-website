@@ -1,4 +1,4 @@
-import { Clock3, Mail, MapPin, Phone, Send } from "lucide-react";
+import { Clock3, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import Reveal from "../components/Reveal.jsx";
 import { assets, contacts } from "../data/catalog.js";
@@ -8,7 +8,7 @@ import { AppLink } from "../lib/navigation.jsx";
 function FooterIcon({ icon: Icon }) {
   return (
     <span className="footer-icon">
-      <Icon size={18} />
+      <Icon size={18} aria-hidden="true" />
     </span>
   );
 }
@@ -29,7 +29,7 @@ function ContactItem({ icon, label, children, href, external = false }) {
       <a
         href={href}
         target={external ? "_blank" : undefined}
-        rel={external ? "noreferrer" : undefined}
+        rel={external ? "noopener noreferrer" : undefined}
         className="focus-ring footer-info-link"
       >
         {content}
@@ -60,6 +60,15 @@ function Footer({ copy }) {
       description: footer.socialDescriptions.telegram,
       icon: Send,
       external: false,
+    },
+    {
+      id: "max",
+      href: contacts.max,
+      label: contact.labels.max,
+      description: footer.socialDescriptions.max,
+      ariaLabel: footer.socialAria?.max,
+      icon: MessageCircle,
+      external: true,
     },
     {
       id: "email",
@@ -113,7 +122,7 @@ function Footer({ copy }) {
         <div className="footer-grid">
           <Reveal as="section" className="footer-column footer-column--brand">
             <div className="footer-brand">
-              <span className="company-logo-surface footer-brand-logo">
+              <span className="footer-logo-surface footer-brand-logo">
                 <img
                   src={assetPath(assets.logo)}
                   alt={copy.header.logoAlt}
@@ -128,7 +137,6 @@ function Footer({ copy }) {
                 <p className="footer-brand-country">Azerbaijan</p>
               </div>
               <p className="footer-brand-tagline">{copy.header.subtitle}</p>
-              <p className="footer-brand-description">{footer.description}</p>
             </div>
           </Reveal>
 
@@ -175,17 +183,14 @@ function Footer({ copy }) {
                     key={item.id}
                     href={item.href}
                     target={item.external ? "_blank" : undefined}
-                    rel={item.external ? "noreferrer" : undefined}
-                    aria-label={`${item.label}: ${item.description}`}
-                    className={`focus-ring footer-social-card footer-social-card--${item.id}`}
+                    rel={item.external ? "noopener noreferrer" : undefined}
+                    aria-label={item.ariaLabel ?? `${item.label}: ${item.description}`}
+                    className={`focus-ring footer-contact-link footer-social-card footer-social-card--${item.id}`}
                   >
                     <span className="footer-social-icon">
-                      <Icon size={19} />
+                      <Icon size={19} aria-hidden="true" />
                     </span>
-                    <span>
-                      <span className="footer-social-name">{item.label}</span>
-                      <span className="footer-social-description">{item.description}</span>
-                    </span>
+                    <span className="footer-social-name">{item.label}</span>
                   </a>
                 );
               })}

@@ -9,13 +9,13 @@ function ProductCard({ product, brand, language, label }) {
 
   return (
     <article className="group grid w-full min-w-0 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-premium md:grid-cols-[0.42fr_0.58fr]">
-      <div className="flex min-w-0 items-center justify-center bg-slate-50 p-6 max-sm:min-h-52 sm:min-h-64">
+      <div className="product-card-media flex min-w-0 items-center justify-center bg-slate-50 p-6 max-sm:min-h-52 sm:min-h-64">
         {product.mainImage ? (
           <img
             src={assetPath(product.mainImage)}
             alt={localized.title}
             loading="lazy"
-            className="max-h-64 w-full object-contain"
+            className="product-card-image max-h-64 w-full object-contain"
           />
         ) : (
           <div className="grid h-32 w-32 place-items-center rounded-3xl border border-slate-200 bg-white text-copper-dark shadow-sm">

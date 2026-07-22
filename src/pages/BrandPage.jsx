@@ -44,7 +44,7 @@ function BrandPage({ brand, copy, language }) {
           </Reveal>
 
           {brand.logo ? (
-            <Reveal className="rounded-3xl border border-white/[0.15] bg-white p-6 shadow-premium">
+            <Reveal className="brand-page-logo-panel rounded-3xl border border-white/[0.15] bg-white p-6 shadow-premium">
               <img
                 src={assetPath(brand.logo)}
                 alt={`${localizedBrand.name} logo`}

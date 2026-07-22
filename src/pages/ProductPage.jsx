@@ -24,7 +24,7 @@ function ProductPage({ product, brand, copy, language }) {
     <>
       <section className="bg-white pt-28">
         <div className="container-shell grid gap-10 py-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:py-16">
-          <Reveal className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-soft">
+          <Reveal className="product-detail-visual-panel rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-soft">
             <ProductVisual product={product} title={localized.title} priority />
           </Reveal>
 
@@ -201,13 +201,15 @@ function ProductVisual({ product, title, priority = false }) {
   }
 
   return (
-    <img
-      src={assetPath(image)}
-      alt={title}
-      onError={() => setImageFailed(true)}
-      className="mx-auto aspect-[4/3] max-h-[520px] w-full object-contain object-center"
-      fetchPriority={priority ? "high" : undefined}
-    />
+    <div className="product-detail-media">
+      <img
+        src={assetPath(image)}
+        alt={title}
+        onError={() => setImageFailed(true)}
+        className="product-detail-image mx-auto aspect-[4/3] max-h-[520px] w-full object-contain object-center"
+        fetchPriority={priority ? "high" : undefined}
+      />
+    </div>
   );
 }
 

@@ -4133,24 +4133,32 @@
   }
 
   .home-brands-section {
-    padding-top: clamp(5rem, 7vw, 6.5rem) !important;
+    padding-top: clamp(8.25rem, 9vw, 9.75rem) !important;
     background:
       radial-gradient(circle at 82% 12%, rgba(216, 165, 74, 0.07), transparent 28%),
       linear-gradient(
         to bottom,
         #0d141f 0%,
-        #1b2026 36px,
-        #3a3f45 74px,
-        #8d939a 108px,
-        #d7dadf 132px,
-        var(--brands-section-bg) 156px,
+        #1b2026 28px,
+        #3a3f45 54px,
+        #8d939a 78px,
+        #d7dadf 94px,
+        var(--brands-section-bg) 110px,
         var(--brands-section-bg) 100%
       ),
       var(--brands-section-bg) !important;
   }
 
   .home-brands-section .section-eyebrow {
-    color: #b7793f;
+    position: relative;
+    z-index: 3;
+    color: #9a5a20;
+    opacity: 1;
+    background: none;
+    filter: none;
+    mix-blend-mode: normal;
+    -webkit-text-fill-color: currentColor;
+    text-shadow: none;
   }
 
   .home-brands-section h2,
@@ -4163,7 +4171,8 @@
   }
 
   html[data-theme="dark"] .home-brands-section .section-eyebrow {
-    color: #d8a54a;
+    color: #e8b65e;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
   }
 
   html[data-theme="dark"] .home-brands-section h2,
@@ -4264,7 +4273,33 @@
 
   @media (max-width: 768px) {
     .home-brands-section {
-      padding-top: clamp(3rem, 12vw, 4rem) !important;
+      padding-top: clamp(7rem, 22vw, 8rem) !important;
+      background:
+        radial-gradient(circle at 82% 12%, rgba(216, 165, 74, 0.06), transparent 28%),
+        linear-gradient(
+          to bottom,
+          #0d141f 0%,
+          #1b2026 24px,
+          #3a3f45 46px,
+          #8d939a 66px,
+          #d7dadf 82px,
+          var(--brands-section-bg) 96px,
+          var(--brands-section-bg) 100%
+        ),
+        var(--brands-section-bg) !important;
+    }
+
+    html[data-theme="dark"] .home-brands-section {
+      background:
+        radial-gradient(circle at 82% 12%, rgba(216, 165, 74, 0.05), transparent 28%),
+        linear-gradient(
+          to bottom,
+          var(--bg-dark-secondary) 0%,
+          var(--bg-graphite) 46px,
+          var(--brands-section-bg) 96px,
+          var(--brands-section-bg) 100%
+        ),
+        var(--brands-section-bg) !important;
     }
   }
 

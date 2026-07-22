@@ -159,7 +159,7 @@ function ProductPage({ product, brand, copy, language }) {
               {gallery.map((image) => (
                 <Reveal
                   key={image}
-                  className="flex min-h-52 items-center justify-center rounded-3xl bg-white p-5 shadow-soft"
+                  className="product-image-surface flex min-h-52 items-center justify-center rounded-3xl bg-white p-5 shadow-soft"
                 >
                   <img
                     src={assetPath(image)}
@@ -201,7 +201,7 @@ function ProductVisual({ product, title, priority = false }) {
   }
 
   return (
-    <div className="product-detail-media">
+    <div className="product-image-surface product-detail-media">
       <img
         src={assetPath(image)}
         alt={title}

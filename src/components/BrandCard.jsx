@@ -9,7 +9,7 @@ function BrandCard({ brand, language, label }) {
   return (
     <article className="brand-premium-card group">
       <div className="brand-premium-card__visual">
-        <div className="brand-premium-card__logo">
+        <div className="brand-logo-surface brand-premium-card__logo">
           <img
             src={assetPath(brand.logo)}
             alt={`${localized.name} logo`}

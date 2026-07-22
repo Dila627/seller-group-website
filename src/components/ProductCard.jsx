@@ -9,7 +9,7 @@ function ProductCard({ product, brand, language, label }) {
 
   return (
     <article className="group grid w-full min-w-0 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-premium md:grid-cols-[0.42fr_0.58fr]">
-      <div className="product-card-media flex min-w-0 items-center justify-center bg-slate-50 p-6 max-sm:min-h-52 sm:min-h-64">
+      <div className="product-image-surface product-card-media flex min-w-0 items-center justify-center bg-slate-50 p-6 max-sm:min-h-52 sm:min-h-64">
         {product.mainImage ? (
           <img
             src={assetPath(product.mainImage)}

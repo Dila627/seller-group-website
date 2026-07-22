@@ -13,7 +13,7 @@ function CatalogProductCard({ product, brand, language, copy }) {
 
   return (
     <article className="catalog-product-card group flex h-full min-w-0 flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-premium">
-      <div className="catalog-product-media flex shrink-0 items-center justify-center bg-slate-50">
+      <div className="product-image-surface catalog-product-media flex shrink-0 items-center justify-center bg-slate-50">
         {image && !imageFailed ? (
           <img
             src={assetPath(image)}

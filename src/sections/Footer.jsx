@@ -113,7 +113,7 @@ function Footer({ copy }) {
         <div className="footer-grid">
           <Reveal as="section" className="footer-column footer-column--brand">
             <div className="footer-brand">
-              <span className="footer-brand-logo">
+              <span className="company-logo-surface footer-brand-logo">
                 <img
                   src={assetPath(assets.logo)}
                   alt={copy.header.logoAlt}

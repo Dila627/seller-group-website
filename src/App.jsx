@@ -127,6 +127,7 @@ function getRouteSeo(route, copy, language) {
     ogDescription: copy.seo.ogDescription,
     twitterTitle: copy.seo.ogTitle,
     twitterDescription: copy.seo.ogDescription,
+    imageAlt: copy.seo.imageAlt,
     image: baseImage,
     url,
     locale: language,

@@ -25,19 +25,20 @@ export const contacts = {
 export const assets = {
   logo: "assets/site/logo.svg",
   hero: "assets/hero-showcases/hero.png",
-  og: "assets/site/seller-group-og.png",
+  og: "og-image.jpg",
 };
+
+const previewDescription =
+  "Tikinti, təmir və izolyasiya materialları, çatdırılma və təmir xidmətləri.";
 
 export const siteCopy = {
   ru: {
     seo: {
       title: "Seller Group Azerbaijan",
-      description:
-        "Поставка строительных, ремонтных материалов и услуг по всему Азербайджану.",
+      description: previewDescription,
       ogTitle: "Seller Group Azerbaijan",
-      ogDescription:
-        "Поставка строительных, ремонтных материалов и услуг по всему Азербайджану.",
-      imageAlt: "Логотип Seller Group Azerbaijan",
+      ogDescription: previewDescription,
+      imageAlt: "Seller Group Azerbaijan",
     },
     header: {
       subtitle: "Строительные, ремонтные материалы и услуги",
@@ -311,12 +312,11 @@ export const siteCopy = {
   },
   az: {
     seo: {
-      title: "Seller Group Azerbaijan — tikinti materialları və xidmətlər",
-      description:
-        "Seller Group Azerbaijan — tikinti və tamamlama materiallarının təchizatı, çatdırılma və təmir xidmətləri.",
+      title: "Seller Group Azerbaijan",
+      description: previewDescription,
       ogTitle: "Seller Group Azerbaijan",
-      ogDescription: "Tikinti və tamamlama materialları, çatdırılma və təmir xidmətləri.",
-      imageAlt: "Seller Group Azerbaijan loqosu",
+      ogDescription: previewDescription,
+      imageAlt: "Seller Group Azerbaijan",
     },
     header: {
       subtitle: "Tikinti, təmir materialları və xidmətlər",

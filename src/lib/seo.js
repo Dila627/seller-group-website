@@ -92,6 +92,10 @@ export function applySeo({
     property: "og:site_name",
     content: "Seller Group Azerbaijan",
   });
+  upsertMeta('meta[property="og:locale"]', {
+    property: "og:locale",
+    content: "az_AZ",
+  });
   upsertMeta('meta[name="twitter:card"]', {
     name: "twitter:card",
     content: "summary_large_image",

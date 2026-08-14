@@ -2,6 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import { getLocalizedBrand } from "../data/catalog.js";
 import { assetPath } from "../lib/assets.js";
 import { AppLink } from "../lib/navigation.jsx";
+import OptimizedImage from "./OptimizedImage.jsx";
 
 function BrandCard({ brand, language, label }) {
   const localized = getLocalizedBrand(brand, language);
@@ -10,12 +11,13 @@ function BrandCard({ brand, language, label }) {
     <article className="brand-premium-card group">
       <div className="brand-premium-card__visual">
         <div className="brand-logo-surface brand-premium-card__logo">
-          <img
+          <OptimizedImage
             src={assetPath(brand.logo)}
             alt={`${localized.name} logo`}
             width="180"
             height="88"
             loading="lazy"
+            fetchPriority="low"
             decoding="async"
           />
         </div>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { getLocalizedBrand, getLocalizedProduct } from "../data/catalog.js";
 import { assetPath } from "../lib/assets.js";
 import { AppLink } from "../lib/navigation.jsx";
+import OptimizedImage from "./OptimizedImage.jsx";
 
 function CatalogProductCard({ product, brand, language, copy }) {
   const [imageFailed, setImageFailed] = useState(false);
@@ -15,12 +16,13 @@ function CatalogProductCard({ product, brand, language, copy }) {
     <article className="catalog-product-card group flex h-full min-w-0 flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-premium">
       <div className="product-image-surface catalog-product-media flex shrink-0 items-center justify-center bg-slate-50">
         {image && !imageFailed ? (
-          <img
+          <OptimizedImage
             src={assetPath(image)}
             alt={localized.title}
             width="640"
             height="480"
             loading="lazy"
+            fetchPriority="low"
             decoding="async"
             onError={() => setImageFailed(true)}
             className="catalog-product-image object-contain object-center transition duration-300"

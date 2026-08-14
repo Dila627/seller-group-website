@@ -30,6 +30,8 @@ export const assets = {
 
 const previewDescription =
   "Tikinti, təmir və izolyasiya materialları, çatdırılma və təmir xidmətləri.";
+const previewImageAlt =
+  "Seller Group Azerbaijan — tikinti, təmir materialları və xidmətlər";
 
 export const siteCopy = {
   ru: {
@@ -38,7 +40,7 @@ export const siteCopy = {
       description: previewDescription,
       ogTitle: "Seller Group Azerbaijan",
       ogDescription: previewDescription,
-      imageAlt: "Seller Group Azerbaijan",
+      imageAlt: previewImageAlt,
     },
     header: {
       subtitle: "Строительные, ремонтные материалы и услуги",
@@ -316,7 +318,7 @@ export const siteCopy = {
       description: previewDescription,
       ogTitle: "Seller Group Azerbaijan",
       ogDescription: previewDescription,
-      imageAlt: "Seller Group Azerbaijan",
+      imageAlt: previewImageAlt,
     },
     header: {
       subtitle: "Tikinti, təmir materialları və xidmətlər",

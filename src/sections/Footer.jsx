@@ -1,5 +1,6 @@
 import { Clock3, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import OptimizedImage from "../components/OptimizedImage.jsx";
 import Reveal from "../components/Reveal.jsx";
 import { assets, contacts } from "../data/catalog.js";
 import { assetPath } from "../lib/assets.js";
@@ -123,12 +124,13 @@ function Footer({ copy }) {
           <Reveal as="section" className="footer-column footer-column--brand">
             <div className="footer-brand">
               <span className="footer-logo-surface footer-brand-logo">
-                <img
+                <OptimizedImage
                   src={assetPath(assets.logo)}
                   alt={copy.header.logoAlt}
                   width="96"
                   height="96"
                   loading="lazy"
+                  fetchPriority="low"
                   decoding="async"
                 />
               </span>

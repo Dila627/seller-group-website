@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { useState } from "react";
+import OptimizedImage from "../components/OptimizedImage.jsx";
 import Reveal from "../components/Reveal.jsx";
 import { contacts, getLocalizedBrand, getLocalizedProduct } from "../data/catalog.js";
 import { assetPath } from "../lib/assets.js";
@@ -161,12 +162,13 @@ function ProductPage({ product, brand, copy, language }) {
                   key={image}
                   className="product-image-surface flex min-h-52 items-center justify-center rounded-3xl bg-white p-5 shadow-soft"
                 >
-                  <img
+                  <OptimizedImage
                     src={assetPath(image)}
                     alt={localized.title}
                     width="640"
                     height="480"
                     loading="lazy"
+                    fetchPriority="low"
                     decoding="async"
                     className="max-h-48 w-full object-contain"
                   />
@@ -205,7 +207,7 @@ function ProductVisual({ product, title, priority = false }) {
 
   return (
     <div className="product-image-surface product-detail-media">
-      <img
+      <OptimizedImage
         src={assetPath(image)}
         alt={title}
         width="800"
@@ -214,7 +216,7 @@ function ProductVisual({ product, title, priority = false }) {
         decoding="async"
         onError={() => setImageFailed(true)}
         className="product-detail-image mx-auto aspect-[4/3] max-h-[520px] w-full object-contain object-center"
-        fetchPriority={priority ? "high" : undefined}
+        fetchPriority={priority ? "high" : "low"}
       />
     </div>
   );

@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import BrandCard from "../components/BrandCard.jsx";
+import OptimizedImage from "../components/OptimizedImage.jsx";
 import ProductCard from "../components/ProductCard.jsx";
 import Reveal from "../components/Reveal.jsx";
 import { brands, getLocalizedBrand, getProductsByBrandId } from "../data/catalog.js";
@@ -45,7 +46,7 @@ function BrandPage({ brand, copy, language }) {
 
           {brand.logo ? (
             <Reveal className="brand-logo-surface brand-page-logo-panel rounded-3xl border border-white/[0.15] bg-white p-6 shadow-premium">
-              <img
+              <OptimizedImage
                 src={assetPath(brand.logo)}
                 alt={`${localizedBrand.name} logo`}
                 width="360"

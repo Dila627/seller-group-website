@@ -4,6 +4,7 @@ import { assets } from "../data/catalog.js";
 import { assetPath } from "../lib/assets.js";
 import { AppLink } from "../lib/navigation.jsx";
 import LanguageSwitch from "./LanguageSwitch.jsx";
+import OptimizedImage from "./OptimizedImage.jsx";
 
 function Header({ copy, language, onLanguageChange }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,11 +34,13 @@ function Header({ copy, language, onLanguageChange }) {
       <div className="container-shell flex items-center justify-between gap-4">
         <AppLink href="/" onClick={closeMenu} className="flex min-w-0 items-center gap-3">
           <span className="header-logo-wrapper grid h-12 w-12 shrink-0 place-items-center sm:h-[54px] sm:w-[54px]">
-            <img
+            <OptimizedImage
               src={assetPath(assets.logo)}
               alt={copy.header.logoAlt}
               width="44"
               height="44"
+              loading="eager"
+              fetchPriority="high"
               decoding="async"
               className="header-logo-image h-full w-full object-contain"
             />

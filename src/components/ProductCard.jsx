@@ -2,6 +2,7 @@ import { ArrowRight, PackageCheck } from "lucide-react";
 import { getLocalizedBrand, getLocalizedProduct } from "../data/catalog.js";
 import { assetPath } from "../lib/assets.js";
 import { AppLink } from "../lib/navigation.jsx";
+import OptimizedImage from "./OptimizedImage.jsx";
 
 function ProductCard({ product, brand, language, label }) {
   const localized = getLocalizedProduct(product, language);
@@ -11,12 +12,13 @@ function ProductCard({ product, brand, language, label }) {
     <article className="group grid w-full min-w-0 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-premium md:grid-cols-[0.42fr_0.58fr]">
       <div className="product-image-surface product-card-media flex min-w-0 items-center justify-center bg-slate-50 p-6 max-sm:min-h-52 sm:min-h-64">
         {product.mainImage ? (
-          <img
+          <OptimizedImage
             src={assetPath(product.mainImage)}
             alt={localized.title}
             width="640"
             height="480"
             loading="lazy"
+            fetchPriority="low"
             decoding="async"
             className="product-card-image max-h-64 w-full object-contain"
           />

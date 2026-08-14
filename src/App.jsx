@@ -18,6 +18,11 @@ const BrandPage = lazy(() => import("./pages/BrandPage.jsx"));
 const CatalogPage = lazy(() => import("./pages/CatalogPage.jsx"));
 const ProductPage = lazy(() => import("./pages/ProductPage.jsx"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage.jsx"));
+const PRODUCTION_ORIGIN = "https://sellers-group.netlify.app";
+
+function productionUrl(path) {
+  return new URL(path, PRODUCTION_ORIGIN).href;
+}
 
 function getInitialLanguage() {
   if (typeof window === "undefined") {
@@ -69,8 +74,8 @@ function getHeroImage(language) {
 }
 
 function getRouteSeo(route, copy, language) {
-  const baseImage = new URL(assetPath(assets.og), window.location.origin).href;
-  const url = window.location.href;
+  const baseImage = productionUrl(assetPath(assets.og));
+  const url = productionUrl(`${window.location.pathname}${window.location.search}`);
 
   if (route.type === "brand") {
     const brand = getLocalizedBrand(route.brand, language);
@@ -79,7 +84,7 @@ function getRouteSeo(route, copy, language) {
       title: `${brand.name} | Seller Group Azerbaijan`,
       description: brand.description,
       image: route.brand.logo
-        ? new URL(assetPath(route.brand.logo), window.location.origin).href
+        ? productionUrl(assetPath(route.brand.logo))
         : baseImage,
       url,
       locale: language,
@@ -94,7 +99,7 @@ function getRouteSeo(route, copy, language) {
     return {
       title: `${product.title} | ${brand.name} | Seller Group Azerbaijan`,
       description: product.shortDescription,
-      image: new URL(assetPath(image), window.location.origin).href,
+      image: productionUrl(assetPath(image)),
       url,
       locale: language,
     };
@@ -158,7 +163,7 @@ function getStructuredData(route, language) {
         "@type": "Brand",
         name: brand.name,
       },
-      image: new URL(assetPath(image), window.location.origin).href,
+      image: productionUrl(assetPath(image)),
     };
   }
 
@@ -173,7 +178,7 @@ function getStructuredData(route, language) {
     };
 
     if (route.brand.logo) {
-      brandData.logo = new URL(assetPath(route.brand.logo), window.location.origin).href;
+      brandData.logo = productionUrl(assetPath(route.brand.logo));
     }
 
     return brandData;
